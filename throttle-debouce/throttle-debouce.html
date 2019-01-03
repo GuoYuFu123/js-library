@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn1" onclick="btnHandle()">throttle</button>
+		<button id="btn2" onclick="btnHandle2()">debouce</button>
+	</body> 
+	<script type="text/javascript">
+		/*
+		 * @author: fugy
+		 * @data: 2019.01.03
+		 * @params: 函数节流和函数抖动[通过定时器实现]
+         * @link：https://blog.csdn.net/qq_39985511/article/details/82734515
+		 */
+		/*
+		 * 节流函数：允许一个函数在规定的时间内只执行一次。
+		 * 个人见解：就是函数在规定的时间内只执行第一次触发，
+		 */
+		function btnHandle() {
+			throttle()
+		}
+		var throttleTimer = null
+		function throttle() {
+			if(throttleTimer) {
+				return 
+			}else {
+				throttleTimer = setTimeout(function(){
+					console.log("***节流****")
+					throttleTimer = null
+				}, 5000)
+			}
+			
+		}
+		/*
+		 *防抖动函数：将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发
+		 * 个人见解：就是函数每一次触发都会触发一个定时器去覆盖之前的定时器（如果有定时器就覆盖，没有就生成一个新的），永远维持一个最新的定时器，在规定时间内进行触发
+		 */
+		var debouceTimer = null
+		function btnHandle2() {
+			debouce()
+		}
+		function debouce(){
+			if(debouceTimer) {
+				clearTimeout(debouceTimer)
+				debouceEvent()
+			} else {
+				debouceEvent()
+			}
+		}
+		function debouceEvent() {
+			debouceTimer = setTimeout(function () {
+				console.log("*****防抖********")
+			}, 5000)
+		}
+	</script>
+</html>
