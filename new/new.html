@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现一个new的过程</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    @author: guoguo
+    @title: 如何实现一个 new
+    @data：2019.2.19
+    */
+    function Dog(name) {
+        this.name = name
+        this.say = function () {
+            console.log('name = ' + this.name)
+        }
+    }
+    function Cat(name) {
+        this.name = name
+        this.say = function () {
+            console.log('name = ' + this.name)
+        }
+    }
+    function _new(fn, ...arg) {
+        const obj = {}; //创建一个新的对象
+        obj.__proto__ = fn.prototype; //把obj的__proto__指向fn的prototype,实现继承
+        fn.apply(obj, arg) //改变this的指向
+        return Object.prototype.toString.call(obj) == '[object Object]'? obj : {} //返回新的对象obj
+    }
+
+    //测试1
+    var dog = _new(Dog,'aaa')
+    dog.say() //'name = aaa'
+    console.log(dog instanceof Dog) //true
+    console.log(dog instanceof Cat) //true
+    //测试2
+    var cat = _new(Cat, 'bbb'); 
+    cat.say() //'name = bbb'
+    console.log(cat instanceof Cat) //true
+
+</script>
+</html>
