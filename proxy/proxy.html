@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" id="input" />
+            <div>
+                <span>您数入的是:</span>
+                <span id="title"></span>
+            </div>
+            <button name="button" id="btn">添加到TODO</button>
+            <ul id="list"></ul>
+        </div>
+    </body>
+    <script>
+        const obj = {}
+        const arr = []
+        const input = document.getElementById('input')
+        const title = document.getElementById('title')
+        const list = document.getElementById('list')
+        const btn = document.getElementById('btn')
+
+        //渲染todo数组
+        const Render = {
+            init: function(arr) {
+                const fragment = document.createDocumentFragment()
+                for (let i = 0; i < arr.length; i++) {
+                    const li = document.createElement('li')
+                    li.textContent = arr[i]
+                    fragment.appendChild(li)
+                }
+                list.appendChild(fragment)
+            },
+            addList: function(val) {
+                const li = document.createElement('li')
+                li.textContent = val
+                list.appendChild(li)
+            }
+        }
+
+        //监听对象
+        const newObj = new Proxy(obj, {
+            get: function(target, key, receiver) {
+                console.log('objget', target, key, receiver)
+                return Reflect.get(target, key, receiver)
+            },
+            set: function(target, key, value, receiver) {
+                console.log('objset', target, key, value, receiver)
+                if (key == 'text') {
+                    input.value = value
+                    title.innerHTML = value
+                }
+                return Reflect.set(target, key, value, receiver)
+            }
+        })
+        //监听数组
+        const newArr = new Proxy(arr, {
+            get: function(target, key, receiver) {
+                console.log('arrget', target, key, receiver)
+                return Reflect.get(target, key, receiver)
+            },
+            set: function(target, key, value, receiver) {
+                console.log('arrset', target, key, value, receiver)
+                if (key !== 'length') {
+                    Render.addList(value);
+                }
+                return Reflect.set(target, key, value, receiver)
+            }
+        })
+
+         // 初始化
+        window.onload = function () {
+            Render.init(arr);
+        };
+        input.addEventListener('keyup', function(e) {
+            newObj.text = e.target.value
+        })
+        btn.addEventListener('click', function() {
+            newArr.push(parseInt(newObj.text))
+        })
+    </script>
+</html>
