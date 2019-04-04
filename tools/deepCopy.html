@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+        使用js实现深拷贝
+    */
+
+    var obj = { a: 1, b: { a: 1 } };
+    var arr = [[1, 3], 4];
+    //方法一
+    function fn(obj) {
+        var copyObj = obj instanceof Array ? [] : {}
+        for (let i in obj) {
+            if (typeof obj[i] == 'object') {
+                copyObj[i] = fn(obj[i])
+            } else {
+                copyObj[i] = obj[i]
+            }
+        }
+        return copyObj;
+    }
+    //方法二
+    function fn1(obj) {
+        let temp = obj.constructor === Array ? [] : {}
+        for (let val in obj) {
+            temp[val] = typeof obj[val] == 'object' ? fn1(obj[val]) : obj[val]
+        }
+        return temp
+    }
+    var obj1 = fn(obj);
+    console.log(obj1)
+
+    var arr1 = fn(arr);
+    console.log(arr1)
+
+
+
+    console.log(obj instanceof Array) //false
+    console.log(obj instanceof Object) //true
+    console.log(arr instanceof Array) //true
+    console.log(arr instanceof Object) //true
+</script>
+
+</html>

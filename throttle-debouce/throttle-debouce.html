@@ -1,59 +1,181 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<button id="btn1" onclick="btnHandle()">throttle</button>
-		<button id="btn2" onclick="btnHandle2()">debouce</button>
-	</body> 
-	<script type="text/javascript">
-		/*
-		 * @author: fugy
-		 * @data: 2019.01.03
-		 * @params: 函数节流和函数抖动[通过定时器实现]
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+    </head>
+    <body>
+        <button id="btn1" onclick="btnHandle()">throttle</button>
+        <button id="btn2" onclick="btnHandle2()">debouce</button>
+    </body>
+    <script type="text/javascript">
+        /*
+         * @author: fugy
+         * @data: 2019.01.03
+         * @params: 函数节流和函数抖动[通过定时器实现]
          * @link：https://blog.csdn.net/qq_39985511/article/details/82734515
-		 */
-		/*
-		 * 节流函数：允许一个函数在规定的时间内只执行一次。
-		 * 个人见解：就是函数在规定的时间内只执行第一次触发，
-		 */
-		function btnHandle() {
-			throttle()
-		}
-		var throttleTimer = null
-		function throttle() {
-			if(throttleTimer) {
-				return 
-			}else {
-				throttleTimer = setTimeout(function(){
-					console.log("***节流****")
-					throttleTimer = null
-				}, 5000)
-			}
-			
-		}
-		/*
-		 *防抖动函数：将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发
-		 * 个人见解：就是函数每一次触发都会触发一个定时器去覆盖之前的定时器（如果有定时器就覆盖，没有就生成一个新的），永远维持一个最新的定时器，在规定时间内进行触发
-		 */
-		var debouceTimer = null
-		function btnHandle2() {
-			debouce()
-		}
-		function debouce(){
-			if(debouceTimer) {
-				clearTimeout(debouceTimer)
-				debouceEvent()
-			} else {
-				debouceEvent()
-			}
-		}
-		function debouceEvent() {
-			debouceTimer = setTimeout(function () {
-				console.log("*****防抖********")
-			}, 5000)
-		}
-	</script>
+         */
+        /*
+         * 节流函数：允许一个函数在规定的时间内只执行一次。
+         * 个人见解：就是函数在规定的时间内只执行第一次触发，
+         */
+        function btnHandle() {
+            throttle()
+        }
+        var throttleTimer = null
+        function throttle() {
+            if (throttleTimer) {
+                return
+            } else {
+                throttleTimer = setTimeout(function() {
+                    console.log('***节流****')
+                    throttleTimer = null
+                }, 5000)
+            }
+        }
+        /*
+         *防抖动函数：将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发
+         * 个人见解：就是函数每一次触发都会触发一个定时器去覆盖之前的定时器（如果有定时器就覆盖，没有就生成一个新的），永远维持一个最新的定时器，在规定时间内进行触发
+         */
+        var debouceTimer = null
+        function btnHandle2() {
+            debouce()
+        }
+        function debouce() {
+            if (debouceTimer) {
+                clearTimeout(debouceTimer)
+                debouceEvent()
+            } else {
+                debouceEvent()
+            }
+        }
+        function debouceEvent() {
+            debouceTimer = setTimeout(function() {
+                console.log('*****防抖********')
+            }, 5000)
+        }
+
+        /**************************************大佬代码**********************************************/
+        /*************防抖***********************************************/
+        //立即执行
+        function debounce(func, wait) {
+            let timeout
+            return function() {
+                let context = this
+                let args = arguments
+
+                if (timeout) clearTimeout(timeout)
+
+                let callNow = !timeout
+                timeout = setTimeout(() => {
+                    timeout = null
+                }, wait)
+
+                if (callNow) func.apply(context, args)
+            }
+        }
+        //非立即执行
+        function debounce1(func, wait) {
+            let timeout
+            return function() {
+                let context = this
+                let args = arguments
+
+                if (timeout) clearTimeout(timeout)
+
+                timeout = setTimeout(() => {
+                    func.apply(context, args)
+                }, wait)
+            }
+        }
+        //双剑合璧
+        /**
+         * @desc 函数防抖
+         * @param func 函数
+         * @param wait 延迟执行毫秒数
+         * @param immediate true 表立即执行，false 表非立即执行
+         */
+        function debounce2(func, wait, immediate) {
+            let timeout
+
+            return function() {
+                let context = this
+                let args = arguments
+
+                if (timeout) clearTimeout(timeout)
+                if (immediate) {
+                    var callNow = !timeout
+                    timeout = setTimeout(() => {
+                        timeout = null
+                    }, wait)
+                    if (callNow) func.apply(context, args)
+                } else {
+                    timeout = setTimeout(function() {
+                        func.apply(context, args)
+                    }, wait)
+                }
+            }
+        }
+        /********************节流*************************************************************/
+        //时间戳版
+        function throttle(func, wait) {
+            let previous = 0
+            return function() {
+                let now = Date.now()
+                let context = this
+                let args = arguments
+                if (now - previous > wait) {
+                    func.apply(context, args)
+                    previous = now
+                }
+            }
+        }
+        //定时器版
+        function throttle1(func, wait) {
+            let timeout
+            return function() {
+                let context = this
+                let args = arguments
+                if (!timeout) {
+                    timeout = setTimeout(() => {
+                        timeout = null
+                        func.apply(context, args)
+                    }, wait)
+                }
+            }
+        }
+        //双剑合璧
+        /**
+         * @desc 函数节流
+         * @param func 函数
+         * @param wait 延迟执行毫秒数
+         * @param type 1 表时间戳版，2 表定时器版
+         */
+        function throttle2(func, wait, type) {
+            if (type === 1) {
+                let previous = 0
+            } else if (type === 2) {
+                let timeout
+            }
+            return function() {
+                let context = this
+                let args = arguments
+                if (type === 1) {
+                    let now = Date.now()
+
+                    if (now - previous > wait) {
+                        func.apply(context, args)
+                        previous = now
+                    }
+                } else if (type === 2) {
+                    if (!timeout) {
+                        timeout = setTimeout(() => {
+                            timeout = null
+                            func.apply(context, args)
+                        }, wait)
+                    }
+                }
+            }
+        }
+    </script>
 </html>
