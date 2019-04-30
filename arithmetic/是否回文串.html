@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+/*
+@info: 是否为回文字符串
+*/
+function fn(str){
+    let strLen = str.length;
+    let len = str.length / 2 -1;
+    let flag = true
+    for(var i = 0; i<= len; i++) {
+        if(str[i] != str[strLen - i -1]){
+            flag = false
+        }
+        if(!flag) {
+            return false
+        }
+    }
+    return flag;
+} 
+
+function fn1(str) {
+    let input = str;
+    return str.split('').reverse().join('') == str
+}
+
+var str = 'abba';
+var str1 = 'abcba'
+var str2 = 'abcfffbfa'
+console.log(fn(str));
+console.log(fn(str2));
+
+
+
+</script>
+</html>

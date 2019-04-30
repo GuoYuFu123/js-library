@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+/**
+*@info: 二分查找
+*/
+var arr = [1,2,3,4,5,7,8,9,12];  //8
+/*
+@info: 递归
+*/
+function binary_search(arr, target, start, end) {
+    var start = start || 0;
+    var end = end || arr.length - 1 ;
+    var mid = Math.floor((start + end) / 2 );
+    if(target == arr[mid]) {
+        return mid;
+    }
+    if (arr[mid] < target) {
+        return binary_search(arr, target, mid + 1 , end)
+    } else {
+        return binary_search(arr, target, start , mid - 1)
+    }
+    return -1
+}
+/*
+@info: 非递归
+*/
+function binary_search1(arr, target) {
+    var start = 0;
+    var end = arr.length - 1;
+    while(start <= end) {
+        var mid = Math.floor((start + end) / 2);
+        if (arr[mid] == target) {
+            console.log(arr[mid])
+            return mid;
+        }
+        if(arr[mid] < target) {
+            start = mid + 1;
+        } else {
+            end = mid - 1
+        }
+    }
+}
+console.log(binary_search1(arr,7));
+
+
+
+</script>
+</html>

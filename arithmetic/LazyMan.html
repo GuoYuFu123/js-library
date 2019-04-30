@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    class LazyMen{
+        constructor(name) {
+            this.name = name;
+            this.taskList = [];
+            setTimeout(
+                () => {
+                    this.next()
+                }
+            ,0)
+            
+        }
+        eat(name) {
+            var that = this;
+            var fn = (function(name) {
+                return function(){
+                    console.log(`I am eating ${name}`)
+                    that.next();
+                }
+            })(name)
+            this.taskList.push(fn)
+            return this;
+        }
+        sleep(time) {
+            var that = this;
+            var  fn = (function (time) {
+                return function () {
+                    console.log(`停留${time}ms...`)
+                    setTimeout(() => {
+                        that.next()
+                    }, time);
+                }
+            })( time * 1000)
+            this.taskList.push(fn)
+            return this;
+        }
+        next() {
+            var fn = this.taskList.shift();
+            fn && fn();
+        }
+    }
+
+    function lazyMenEngine(name) {
+        return new LazyMen(name)
+    }
+    //LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(4).eat('junk food');
+    lazyMenEngine('Tony').eat('lunch').eat('dinner').sleep(5).eat('junk food')
+</script>
+</html>

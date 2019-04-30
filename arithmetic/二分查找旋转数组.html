@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+/**
+*@info: 二分查找旋转数组最大值
+*      [5,6,1,2,3];
+*      输出6
+*/
+var arr = [8,9,12,1,2,4,5,7];  //8
+var arr = [8,9,1,2,3]
+function findMax(arr) {
+    var start = 0; 
+    var end = arr.length - 1;
+    while(start < end) {        
+        var mid = start + Math.ceil((end -start) / 2); //4
+        if(arr[mid] < arr[end]) {
+            end = mid ;
+        } else {
+            start = mid ;
+        }
+    }
+    return start - 1
+}
+console.log(findMax(arr));
+
+// Number.prototype.add = function() {
+//     console.log(this)
+//     console.log(this.valueOf())
+//     return this + 1;
+// }
+
+// console.log((3).add(8))
+</script>
+</html>

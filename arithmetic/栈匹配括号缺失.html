@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+class Stack{
+    constructor(){
+        this.data = [];
+        this.top = 0;
+    }
+    length() {
+        return this.top;
+    }
+    pop() {
+        --this.top ; 
+    }
+    push(ele) {
+        this.data[this.top ++] = ele
+    }
+    peek() {
+        return this.data[-- this.top]
+    }
+    clear() {
+        this.top = 0;
+    }
+
+}
+
+
+var str = "2.3 + 23 / 12 + (3.14159×0.24";
+function matchK(str) {
+    var stack = [];
+    for(var i = 0; i < str.length; i++) {
+        if(['('].indexOf(str[i]) != -1) {
+            stack.push(str[i])
+        } else {
+            if(stack.length) {
+                var top = stack[stack.length - 1];
+                switch(stack[i]) {
+                    case ")": 
+                        if (i == top) {
+                            stack.pop();
+                            break;
+                        } else {
+                            return i;
+                        }    
+                };                                
+                if (i == str.length-1 ) {
+                    return i;
+                }  
+            }
+            
+        }
+    }
+}
+console.log(matchK(str))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
