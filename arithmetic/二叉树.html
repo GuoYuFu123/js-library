@@ -21,7 +21,10 @@
     function BST() {
         this.root = null;
         this.insert = insert;
-        // this.inOrder = inOrder;
+        this.inOrder = inOrder;
+        this.getMin = getMin;
+        this.getMax = getMax;
+        this.find = find
     }
     function insert(data) {
         var n = new Node(data, null, null);
@@ -32,7 +35,7 @@
             var parent;
             while(true) {
                 parent = current;
-                if(data < current) {
+                if(data < current.data) {
                     current = current.left;
                     if(current == null) {
                         parent.left = n;
@@ -49,14 +52,81 @@
         }
     }
     var bst = new BST();
-    console.log(bst)
     bst.insert(23)
-    bst.insert(45)
     bst.insert(16)
     bst.insert(37)
     bst.insert(3)
     bst.insert(99)
     bst.insert(22)
     console.log(bst)
+    console.log('***********中序****************')
+    inOrder(bst.root)
+    console.log('***********先序****************')
+    preOrder(bst.root)
+    console.log('***********后序****************')
+    postOrder(bst.root)
+    console.log("***********最小值****************")
+    console.log(bst.getMin())
+    console.log("***********最大值****************")
+    console.log(bst.getMax())
+    console.log("***********查找指定值****************")
+    console.log(bst.find(3))
+
+    //中序遍历
+    function inOrder(node) {
+        if(!(node == null)) {
+            inOrder(node.left)
+            console.log(node.show())
+            inOrder(node.right)
+        }
+    }
+
+    //先序遍历
+    function preOrder(node) {
+        if(!(node == null)) {
+            console.log(node.show())
+            preOrder(node.left)
+            preOrder(node.right)
+        }
+    }
+
+    //后序遍历
+    function postOrder(node) {
+        if(!(node == null)) {       
+            postOrder(node.left)
+            postOrder(node.right)
+            console.log(node.show())
+        }
+    }
+    //查找最小值
+    function getMin() {
+        var current = this.root;
+        while(!(current.left == null)) {
+            current = current.left;
+        }
+        return current.data;
+    }
+    //查找最大值
+    function getMax() {
+        var current = this.root;
+        while(!(current.right == null)) {
+            current = current.right;
+        }
+        return current.data;
+    }
+    //查找指定值
+    function find(data) {
+        var current = this.root;
+        while(current != null) {
+            if(current.data == data) {
+                return current;
+            } else if(current.data > data) {
+                current = current.left
+            } else {
+                current = current.right
+            }
+        }
+        return null
+    }
 </script>
 </html>
