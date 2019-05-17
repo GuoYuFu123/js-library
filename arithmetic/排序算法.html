@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/**
+@info: 基本排序算法
+*/
+function createArr(num) {
+    let arr = [];
+    for(let i = 0; i< num; i++) {
+        arr[i] = Math.floor(Math.random() * (num + 1))
+    }
+    return arr
+}
+class CArray{
+    constructor() {
+        this.data = createArr(10);
+    }
+    reCreate(){
+        this.data = createArr(10);
+    }
+    //冒泡排序
+    bubbleSort() {
+        for(var i = 1; i< this.data.length; i++) {
+            for(var j = 0; j< this.data.length -i; j++) {
+                if(this.data[j] < this.data[j+1]) {
+                    var temp = this.data[j];
+                    this.data[j] = this.data[j+1];
+                    this.data[j+1] = temp;
+                }
+            }
+        }
+        return this.data
+    }
+    //选择排序
+    selectionSort() {
+        for(var i = 0; i< this.data.length-1; i++) {
+            for(var j = i+ 1;j < this.data.length; j++) {
+                if(this.data[i] < this.data[j]) {
+                    var temp = this.data[i];
+                    this.data[i] = this.data[j];
+                    this.data[j] = temp
+                }
+            }
+        }
+        return this.data;
+    }
+    //插入排序
+    insertionSort() {
+        for(var i = 1; i< this.data.length; i++) {
+            var temp = this.data[i];
+            var j = i;
+            while(j>0 && (this.data[j-1] >= temp)) {
+                this.data[j] = this.data[j-1];
+                --j
+            }
+            this.data[j] = temp;
+        }
+        return this.data;
+    }
+    insertionSort1() {
+        for(var i = 1; i< this.data.length; i++) {
+            for(var j = i; j>0; j--) {
+                if(this.data[j-1] > this.data[j]) {
+                    var temp = this.data[j];
+                    this.data[j] = this.data[j-1];
+                    this.data[j-1] = temp;
+                }  else {
+                    break;
+                }
+            }
+        }
+        return this.data
+    }
+    //快速排序
+    quickSort(arr) {
+        if(arr.length == 0) {
+            return [];
+        }
+        let left = [];
+        let right = [];
+        let point = arr[0];
+        for(var i = 1; i< arr.length; i++) {
+            if(arr[i] < point) {
+                left.push(arr[i]);
+            } else {
+                right.push(arr[i]);
+            }
+        }
+        return this.quickSort(left).concat(point, this.quickSort(right))
+    }   
+}
+var arr = new CArray();
+arr.reCreate()
+console.time();
+console.log(arr.bubbleSort())
+console.timeEnd();
+arr.reCreate()
+console.time();
+console.log(arr.selectionSort())
+console.timeEnd();
+arr.reCreate()
+console.time();
+console.log(arr.insertionSort())
+console.timeEnd();
+
+arr.reCreate()
+console.log(arr.quickSort(arr.data))
+
+
+
+
+
+
+/**
+1、冒泡排序是因为使用这种排序算法排序时，数据值会像气泡一样从数组的一端漂
+浮到另一端。假设正在将一组数字按照升序排列，较大的值会浮动到数组的右侧，而较小
+的值则会浮动到数组的左侧。之所以会产生这种现象是因为算法会多次在数组中移动，比
+较相邻的数据，当左侧值大于右侧值时将它们进行互换；
+2、选择排序算法。选择排序从数组的开头开始，将第一个元素和其他元
+素进行比较。检查完所有元素后，最小的元素会被放到数组的第一个位置，然后算法会从
+第二个位置继续。这个过程一直进行，当进行到数组的倒数第二个位置时，所有的数据便
+完成了排序
+3、插入排序类似于人类按数字或字母顺序对数据进行排序。例如，让班里的每个学生上交一
+张写有他的名字、学生证号以及个人简介的索引卡片。学生交上来的卡片是没有顺序的，
+但是我想让这些卡片按字母顺序排好，这样就可以很容易地与班级花名册进行对照了
+*/
+</script>
+</html>
