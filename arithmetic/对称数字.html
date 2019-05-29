@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //第 81 题：打印出 1 - 10000 之间的所有对称数 例如：121、1331 等 
+    class Test{
+        constructor() {
+            this.arr = [];
+        }
+        symmetry() {
+            for(var i = 1; i<=1000;i++) {    
+                let flag = true;            
+                i = String(i);
+                let integer = parseInt(i.length/2);
+                for(let j = 0; j < integer; j++) {
+                    if(i[j] != i[i.length - j -1]) {
+                        flag = false
+                    }
+                }
+                if(flag) {
+                    this.arr.push(Number(i))
+                }
+            }
+            return this.arr;
+        }
+    }
+    let test = new Test();
+    console.log(test.symmetry()) //[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99, 101, 111, 121, 131, 141, 151, 161, 171, 181, 191, 202, 212, 222, 232, 242, 252, 262, 272, 282, 292, 303, 313, 323, 333, 343, 353, 363, 373, 383, 393, 404, 414, 424, 434, 444,....]
+</script>
+</html>

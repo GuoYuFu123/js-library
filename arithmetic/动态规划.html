@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态规划</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    *动态规划： 斐波那契0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55,
+    */
+    //递归调用 
+    function recurFib(n) {
+        if(n < 2) {
+            return n;
+        } else {
+            return recurFib(n-1) + recurFib(n-2)
+        }
+    }
+    //动态规划
+    function dynFib(n) {
+        if(n == 0) {
+            return 0;
+        }
+        if(n == 1 || n == 2) {
+            return 1;
+        }
+        var val = [];
+        val[1] = 1;
+        val[2] = 1;
+        for(let i =3; i<=n; i++) {
+            val[i] = val[i-1] + val[i-2];
+        }
+        return val[n]
+    }
+    //叠加
+    function iterFib(n) {
+        if(n == 0) {
+            return 0;
+        }
+        var last = 1;
+        var nextLast = 1;
+        var result = 1;
+        for(let i = 2; i< n; i++) {
+            result = last + nextLast
+            last = nextLast;
+            nextLast = result;
+        }
+        return result;
+    }
+    console.time();
+    console.log(recurFib(10))
+    console.timeEnd();
+    console.time();
+    console.log(dynFib(10))
+    console.timeEnd();
+    console.time();
+    console.log(iterFib(10))
+    console.timeEnd();
+</script>
+</html>

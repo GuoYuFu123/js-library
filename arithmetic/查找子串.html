@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>  
+    /**
+    @info:实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置
+    @param: {str} 
+    */
+    function sonStr(str,target) {
+        if(target.length > str.length)
+            return -1;
+        for(let i =0; i< target.length; i++) {
+            if(str.substr(i,target.length) == target) {
+                return i
+            }
+        }
+        return -1;
+    }
+    let str = 'zxcvbnm';
+    let target = 'z0x'
+    console.log(sonStr(str, target))
+</script>
+</html>

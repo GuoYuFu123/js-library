@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/**
+示例:
+
+输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+说明:
+
+必须在原数组上操作，不能拷贝额外的数组。
+
+尽量减少操作次数
+**/
+var arr = [0,1,0,3,12];
+
+function move(arr) {
+    var len = arr.length;
+    for(var i = len; i>= 0; i--){
+        if(arr[i] === 0){
+            arr.splice(i, 1);
+            arr.push(0)
+        }
+    }
+    return arr
+}
+/* 最有解算法 */
+function move2(arr) {
+    let len = arr.length
+    let index = 0;
+    for(var i = 0; i< len; i++) {
+        if(arr[i] == 0) {
+            index ++;
+        } else {
+            arr[i-index] = arr[i];
+            arr[i] = 0;
+        }
+    }
+    return arr;
+}
+
+console.log(move2(arr))
+</script>
+</html> 
