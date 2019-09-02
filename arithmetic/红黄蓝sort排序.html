@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+*@desc: 在一个字符串数组中有红、黄、蓝三种颜色的球，且个数不相等、顺序不一致，请为该数组排序。使得排序后数组中球的顺序为:黄、红、蓝。
+    例如：    红蓝蓝黄红黄蓝红红黄红，
+    排序后为：黄黄黄红红红红红蓝蓝蓝。
+*@author: guoguo 2019.08.02
+*/
+
+var str = '红蓝蓝黄红黄蓝红红黄红';
+
+//法1 挺好
+function sort(str) {
+    var arr = str.split('');
+    arr.sort((a, b) => {
+        return getNumByType(a) - getNumByType(b)
+    })
+    return arr.join("");
+}
+function getNumByType(type) {
+    switch(type) {
+        case "黄": return 1;
+        case "红": return 2;
+        case "蓝": return 3;
+    }
+}
+console.log(sort(str))
+
+//法2
+function sortStr(str) {
+    var arr = [];
+    var redIndex = 0;
+    for(let i = 0; i< str.length; i++) {
+        switch(str[i]) {
+            case "黄":
+                arr.unshift(str[i])
+                redIndex++;
+                break;
+            case "红": 
+                arr.splice(redIndex, 0, str[i])
+                redIndex++
+                break;
+            case "蓝": 
+                arr.push(str[i]);
+                break;
+        }
+    }
+    return arr.join("");
+}
+console.log(sortStr(str)); //黄黄黄红红红红红蓝蓝蓝
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    *   @desc: 查找两个字符串a,b中的最长公共子串。
+    *   @author: guoguo 2019.09.02
+    */
+    var str1 = "abcdefghijklmnop";
+    var str2 = "abcsafjklmnopqrstuvw";   //jklmnop
+
+    function findLongSubStr(str1, str2) {
+        if (str1.length > str2.length) {
+            var t= "";
+            t = str1;
+            str1 = str2;
+            str2 = t;
+        }
+        let targetStr = "";
+        for(var i = 0; i< str1.length; i++) {
+            for(var j = 0; j< str1.length; j ++) {
+                var subStr = str1.substr(i,j);
+                if (str2.indexOf(subStr) >= 0 ) {
+                    if(subStr.length >= targetStr.length) {
+                        targetStr = subStr;
+                    }
+                }
+            }
+        }
+        return targetStr;
+    }
+    console.log(findLongSubStr(str1, str2));
+    
+</script>
+</html>
