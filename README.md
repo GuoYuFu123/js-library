@@ -1,5 +1,12 @@
 # js-library
-js-library记录闲暇时间的点滴
+## 简介
+
+```
+js-library记录个人成长的点滴,欢迎大家进行技术交流！！！
+```
+
+
+
 ##目录
 
 ```javascript
