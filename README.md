@@ -1,13 +1,13 @@
 # js-library
 ## 简介
 
-```javascript
+```bush
 js-library记录个人成长的点滴,欢迎大家进行技术交流
 ```
 
 ##目录
 
-```javascript
+```bush
 --  arithmetic 【算法基础系列】
 
 --  leetcode 【leetcode刷题记录】
