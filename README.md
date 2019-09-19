@@ -1,34 +1,25 @@
-# test-project
-test-project
+# js-library
+js-library记录闲暇时间的点滴
 ##目录
 
-###canvas-circle-water[canvas实现一个球形水滴进度图]
-```
----water_moire.html
-```
-###new[实现一个new]
-```
----new.html
-```
-### plugins
-```
----jszip插件使用
-```
-###promise[实现一个promise]
-```
----promise详解
-```
-###proxy[vue 代理实操]
-```
----proxy
-```
-###throttle-debouce [防抖与节流]
-```
----函数防抖和函数节流
-```
-### tools [工具方法]
-```
----深拷贝deepCopy.html
+```javascript
+--  arithmetic 【算法基础系列】
+
+--  leetcode 【leetcode刷题记录】
+
+--  plugins 【插件系列】
+	-- canvas-circle-water  [canvas实现水滴进度图形]
+	-- jsZip [jszip实现文件解压缩]
+
+--  tools 【工具系列】
+	-- deepCopy [深拷贝]
+	-- new [实现一个new]
+	-- promise [实现一个promise]
+	-- proxy [利用proxy实现vue的双向数据绑定]
+	-- throttle-debouce [节流与防抖]
+
+未完待续...
+
 ```
 
 

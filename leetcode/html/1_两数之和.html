@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/**
+ *@desc 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+ //通过类似选择排序的方法
+ var twoSum = function(nums, target) {
+    var arr = [];
+    for(var i = 0; i< nums.length - 1;i++) {
+        for(var j = i+1; j < nums.length; j++){
+            if(nums[i] + nums[j] === target) {
+                arr = [i, j];
+                return arr;
+            }
+        }
+    }
+};
+
+var nums = [2, 7, 11, 15], target = 9;
+console.log(twoSum(nums, target))
+</script>
+</html>
