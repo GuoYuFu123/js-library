@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    * 实现链式调用的demo,
+    * 1、咱们在开发中可能会用到很多的链式调用，最常见的就是jq的调用，eg: $("div").width("100px").height("100px");
+    * 2、补充一下知识点：那就是函数如果默认不指定return，那么函数默认返回undefined
+    * 3、在js中类，其实也是对象，咱们可以在一次函数的调用中，返回当前的this，当前的类或者对象，就可以继续进行调用了
+    */
+    class Person {
+        constructor(name) {
+            this.name = name;
+        }
+        eat() {
+            console.log(this.name + '正在吃饭');
+            return this;
+        }
+        drink() {
+            console.log(this.name + '正在喝水');
+            return this;
+        }
+        end() {
+            console.log(this.name + '测试完毕');
+            return this;
+        }
+    }
+    var p = new Person("果果");
+    p.eat().drink().end();
+</script>
+</html>

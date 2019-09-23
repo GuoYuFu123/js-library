@@ -18,6 +18,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- jsZip [jszip实现文件解压缩]
 
 --  tools 【工具系列】
+    -- chainCall [链式调用的demo]
 	-- deepCopy [深拷贝]
 	-- new [实现一个new]
 	-- promise [实现一个promise]
