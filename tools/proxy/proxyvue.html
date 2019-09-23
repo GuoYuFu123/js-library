@@ -72,7 +72,7 @@
                 const nodes = Array.prototype.slice.call(document.querySelector(el).children)
                 let data = this.$data
                 nodes.map(node => {
-                    if (node.children.length > 0) this._complie(node)
+                    if (node.children.length > 0) this.compile(node)
                     if (node.hasAttribute('v-bind')) {
                         let property = node.getAttribute('v-bind')
                         this.publish(new Watcher(node, 'innerHTML', data, property))
