@@ -1,13 +1,15 @@
 # js-library
 
 ## 简介
-```shell
+```bush
 js-library记录个人成长的点滴,欢迎大家进行技术交流
 ```
 
 ##文件结构
-```shell
+```bush
 --  arithmetic 【算法基础系列】
+
+--  booklist 【前端书籍系列】
 
 --  leetcode 【leetcode刷题记录】
 
