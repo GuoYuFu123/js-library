@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+    输入: ["eat", "tea", "tan", "ate", "nat", "bat"],
+    输出:
+    [
+        ["ate","eat","tea"],
+        ["nat","tan"],
+        ["bat"]
+    ]
+    */
+    /**
+    * @param {string[]} strs
+    * @return {string[][]}
+    */
+    var groupAnagrams = function(strs) {
+        var arr = [];
+        //字典数据
+        var dict = {};
+        strs.forEach((item,index) => {
+            let key = item.split("").sort().join("");
+            if (dict[key]) {
+                dict[key].push(index)
+            } else {
+                dict[key] = [index];
+            }
+        })
+        for(let key in dict) {
+            let group = [];
+            dict[key].forEach(item => group.push(strs[item]))
+            arr.push(group)
+        }
+        return arr;
+    };
+
+    var strs = ['abc'];
+    console.log(groupAnagrams(strs))
+</script>
+</html>
