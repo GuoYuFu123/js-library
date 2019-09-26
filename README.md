@@ -5,7 +5,7 @@
 js-library记录个人成长的点滴,欢迎大家进行技术交流
 ```
 
-##文件结构
+## 文件结构
 ```bush
 --  arithmetic 【算法基础系列】
 
@@ -33,5 +33,5 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 ```
 
 
-#license
+# license
 MIT
