@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    主要分为深度优先遍历和广度优先遍历，下面来分别code一下
+    */
+    var tree = [
+        {
+            id: "1",
+            children: [
+                {
+                    id: '1-1',
+                    children: [
+                        {
+                            id: '1-1-1'
+                        }
+                    ]
+                },{
+                    id: '1-2',
+                    children: [
+                        {
+                            id: '1-2-1'
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    //深度优先遍历
+    function dfs(arr) {
+        arr.forEach(item=> {
+            console.log(item.id);
+            if (item.children) {
+                dfs(item.children)
+            }
+        })
+    }
+    dfs(tree);
+    console.log('***************************************')
+
+    
+    //广度优先遍历
+    function bfs(tree) {
+        var queue = []; //构建一个队列，先进先出
+        queue.push(tree[0]);        
+        while (queue.length) {
+            var node = queue.shift();
+            console.log(node.id)
+            if (node.children) {
+                node.children.forEach(item => {
+                    queue.push(item)
+                })
+                
+            }
+        }
+
+    }
+    bfs(tree);
+</script>
+</html>
