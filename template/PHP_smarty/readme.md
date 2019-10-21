@@ -1,6 +1,6 @@
 ### PHP模板Smarty学习 
 
-*create by fuguoyu 2019.10.21*
+*created by fuguoyu 2019.10.21*
 
 #### 一、项目搭建区域
 
