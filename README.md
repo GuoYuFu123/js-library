@@ -21,9 +21,6 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- canvas-circle-water  [canvas实现水滴进度图形]
 	-- jsZip [jszip实现文件解压缩]
 	
---template 【模板学习】
-	-- PHP_smarty
-
 --  tools 【工具系列】
 	-- chainCall [链式调用的demo]
 	-- deepCopy [深拷贝]	
