@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    1、在类中，我们通过new关键字来实例化对象，并将prototype指向类的prototype所指的对象，然而类构造函数外面通过点的语法定义的属性方法是不是添到新的实例化对象里去的，需要通过点的语法来调用
+    */
+    var Book = function(id, bookName, price) {
+        this.id = id;
+        this.bookName = bookName;
+        this.price = price;        
+    }    
+    Book.prototype.display = function () {
+        console.log(this.id)
+    }    
+    //类的私有方法
+    Book.getName = function() {
+        console.log("getName")
+    }
+    var book = new Book(1, "js", 100);
+    book.display();
+    // book.getName(); //不能通过实例来访问
+
+    // 通过点来定义的方法，只能通过点来调用，类似于java中的static语法
+    Book.getName(); 
+
+
+</script>
+</html>

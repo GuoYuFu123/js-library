@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类式继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    类式继承：
+*/
+
+    //声明父类
+    function SuperClass() {
+        this.superFlag = true;
+    }
+    //为父类添加方法
+    SuperClass.prototype.getSpuerFlag = function() {
+        return this.superFlag;
+    }
+
+    //声明子类
+    function SubClass() {
+        this.subFlag = false;
+    }
+    //继承父类
+    SubClass.prototype = new SuperClass();
+    //为子类添加共有方法
+    SubClass.prototype.getSubFlag = function() {
+        return this.subFlag;
+    }
+
+    var superInstance = new SuperClass();
+    var subInstance = new SubClass();
+
+
+    console.log(superInstance, subInstance)     
+
+    console.log(subInstance instanceof SubClass)   //true
+    console.log(subInstance instanceof SuperClass) //true
+
+    console.log(SubClass instanceof SuperClass)    //flase
+    console.log(SubClass.prototype instanceof SuperClass)    //true
+
+
+
+    //缺点示例
+    function Super() {
+        this.book = ['js'];
+    }
+    function Sub () {}
+    Sub.prototype = new Super();
+    
+    var instance1 = new Super();
+    var instance2 = new Sub();
+    var instance3 = new Sub();
+
+    console.log(instance1.book, instance2.book, instance3.book);  //['js'],['js'],['js']
+    instance2.book.push('java');  //子类示例修改了父类中的共有变量
+    console.log(instance1.book, instance2.book, instance3.book);  //['js'],['js','java'],['js','java']
+</script>
+</html>

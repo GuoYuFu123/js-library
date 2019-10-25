@@ -20,6 +20,10 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 --  plugins 【插件系列】
 	-- canvas-circle-water  [canvas实现水滴进度图形]
 	-- jsZip [jszip实现文件解压缩]
+
+--  prototypeAndInherit 【原型与继承】
+	-- html 【测试代码】
+	-- markdown 【对应的markdown】
 	
 --  tools 【工具系列】
 	-- chainCall [链式调用的demo]
