@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造函数继承</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*
+        构造函数继承
+    */
+
+    //声明父类
+    function SuperClass(id) {
+        this.books = ['js'];
+        this.id = id
+    }
+    //父类声明的原型方法
+    SuperClass.prototype.showBooks = function() {
+        console.log(this.books)
+    }
+
+    //声明子类
+    function SubClass(id) {
+        SuperClass.call(this, id); 
+        // SuperClass.apply(this, arguments);
+    }
+    var instance1 = new SubClass(10);
+    var instance2 = new SubClass(11);
+
+    instance1.books.push('java');
+    console.log(instance1.books,instance1.id);  //['js']  10
+    console.log(instance2.books,instance2.id);  //['js','java'] 11
+
+    instance1.showBooks();// TypeError: instance1.showBooks is not a function
+</script>
+
+</html>
