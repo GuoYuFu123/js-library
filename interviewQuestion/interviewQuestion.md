@@ -22,6 +22,7 @@
 
 ```
 1、说一下函数预解析
+2、获取url中的search参数； eg: www.xxx.com?name=xiaoming&age=18
 	
 未完待续...
 ```
@@ -41,6 +42,10 @@
 ##### 框架系列
 
 ```
+vue 
+	1、vue项目，a页面用keepalive，跳转到b页面并修改了数据，返回a页面的时候要进行数据更新?
+	2、router.push({name:"xxx", params:"xxx")和router.push({path:"xxx", query:"xxx")的区别?
+	3、给一个div动态添加不同的背景图
 未完待续...
 ```
 

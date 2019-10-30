@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型式继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    原型式继承
+*/
+
+    function inheritObject(o) {
+        //声明一个过渡函数对象
+        function F() {};
+        //过渡对象的原型继承父对象
+        F.prototype = o;
+        //返回过渡对象的一个实例，该实例的原型继承了父对象
+        return new F();
+    }
+
+    //test
+    var book = {
+        name: 'js',
+        books: ['js']
+    };
+    
+    var newBook = inheritObject(book);
+    newBook.name = 'newBook';
+    newBook.books.push("newBook");
+
+    var otherBook = inheritObject(book);
+    otherBook.name = 'otherBook';
+    otherBook.books.push("otherBook");
+
+    console.log(newBook.name);      //newBook
+    console.log(newBook.books);     //["js", "newBook", "otherBook"]
+
+    console.log(otherBook.name);    //otherBook
+    console.log(otherBook.books);   //["js", "newBook", "otherBook"]
+
+</script>
+</html>
