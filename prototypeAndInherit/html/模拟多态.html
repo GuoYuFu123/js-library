@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟多态</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+/*
+    模拟多态
+*/
+
+function A() {
+    this.add = function() {
+        let len = arguments.length;
+        switch(len) {
+            case 0: return 10;
+            case 1: return arguments[0];
+            case 2: return arguments[0] + arguments[1];
+            default: return 0;
+        }
+    }
+}
+
+var a = new A();
+console.log(a.add());
+console.log(a.add(15));
+console.log(a.add(10,5));
+console.log(a.add(10,5,3))
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript 多继承</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+/*
+    多继承
+*/
+
+//单继承[如果在继承过程中，如果出现相同名字的，后面的会覆盖前面的属性]
+function extend(target, source) {
+    for(var prototype in source) {
+        target[prototype] = source[prototype]
+    }
+}
+var book = {
+    name: 'js'
+}
+var otherBook = {
+    size: "16K"
+}
+var otherBook2 = {
+    price: '$99'
+}
+// extend(book, otherBook)
+// console.log(book.name, book.size);     // js, 16k
+
+
+//多继承，将第一个参数作为目标对象，绑定在Object的原型上
+Object.prototype.mix = function() {
+    console.log(arguments)
+    var len = arguments.length,
+    arg;
+    //遍历所有的对象
+    for( var i = 0; i<len; i++) {
+        //缓存当前的对象
+        arg = arguments[i];
+        for(var prototype in arg) {
+            this[prototype] = arg[prototype]
+        }
+    }
+}
+book.mix(otherBook,otherBook2);
+console.log(book.name, book.size, book.price);   //js 16K $99
+
+
+</script>
+</html>
