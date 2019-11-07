@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工厂模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        工厂模式
+    */
+
+    //实体类
+    function Cat() {}
+    Cat.prototype = {
+        run: function() {
+            console.log('cat')
+        }
+    }
+
+    function Dog() {}
+    Dog.prototype = {
+        run: function() {
+            console.log('dog')
+        }
+    }
+
+    //工厂类
+    function Animal(name) {
+        switch(name) {
+            case 'cat': return new Cat();
+            case 'dog': return new Dog();
+            default: return null;
+        }
+    }
+
+    //测试
+    let cat = Animal('cat');
+    cat.run();
+
+    let dog = Animal('dog');
+    dog.run();
+
+</script>
+</html>
