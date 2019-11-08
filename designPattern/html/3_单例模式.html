@@ -17,8 +17,9 @@
 
     Singleton.getInstance = (function() {
         let instance = null;
+        // 由于es6没有静态类型,故闭包: 函数外部无法访问 instance
         return function() {
-            console.log(instance)
+            //如果没有实例化，就进行实例化
             if(!instance) {
                 instance = new Singleton()
             } 
@@ -26,6 +27,7 @@
         }
     })()
 
+    // 测试代码
     let s1 = Singleton.getInstance();
     let s2 = Singleton.getInstance();
     console.log(s1, s2)

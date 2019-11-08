@@ -22,7 +22,7 @@
 
 - [工厂模式（Factory Pattern）](./markdown/1_工厂模式.md)
 - [抽象工厂模式（Abstract Factory Pattern）](./markdown/2_抽象工厂模式.md)
-- 单例模式（Singleton Pattern）
+- [单例模式（Singleton Pattern）](./markdown/3_单例模式.md)
 - 建造者模式（Builder Pattern）
 - 原型模式（Prototype Pattern）
 
