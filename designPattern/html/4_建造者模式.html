@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>建造者模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        建造者模式
+    */
+    //人
+    function Human(params) {
+        this.skill = params.skill || '保密';
+        this.hobby = params.hobby || '保密';
+    }
+    Human.prototype = {
+        getSkill: function() {
+            return this.skill;
+        },
+        getHobby: function() {
+            return this.hobby;
+        }
+    }
+    //人的名字
+    function Named(name) {
+        this.name = name;
+    }
+    Named.prototype.getName = function() {
+        return this.name;
+    }
+    //人的工作
+    function Work(work) {
+        switch(work) {
+            case "code": 
+                this.work = '程序员';
+                this.workDesc = '码农';
+                break;
+            case "UI": 
+                this.work = '做图';
+                this.workDesc = '艺术';
+                break;
+            case "PM": 
+                this.work = '产品';
+                this.workDesc = '需求';
+                break;
+            default:
+                this.work = '保密';
+                this.workDesc = "保密";
+        }
+    }
+    Work.prototype = {
+        getWork: function() {
+            return this.work;
+        },
+        getWorkDesc: function() {
+            return this.workDesc;
+        }
+    }
+
+    //上面的构造函数是对人各个方面的拆分点，这里进行建设，将人组合
+    function Person(human,name, work) {
+        var _person = new Human(human);
+        _person.name = new Named(name);
+        _person.work = new Work(work)
+        return _person;
+    }
+
+    //测试
+    var human = {skill: 'IT'}
+    var name = '付果果';
+    var work = 'code';
+    var person = new Person(human,name,work);
+
+    console.log(person.getSkill())          //IT
+    console.log(person.getHobby())          //保密
+
+    console.log(person.name.getName())      //付果果
+
+    console.log(person.work.getWork())      //程序员
+    console.log(person.work.getWorkDesc())  //码农
+</script>   
+</html>
