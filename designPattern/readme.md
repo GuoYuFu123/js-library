@@ -24,7 +24,7 @@
 - [抽象工厂模式（Abstract Factory Pattern）](./markdown/2_抽象工厂模式.md)
 - [单例模式（Singleton Pattern）](./markdown/3_单例模式.md)
 - [建造者模式（Builder Pattern）](./markdown/4_建造者模式.md)
-- 原型模式（Prototype Pattern）
+- [原型模式（Prototype Pattern）](./markdown/5_原型模式.md)
 
 ###### **结构型模式** 
 

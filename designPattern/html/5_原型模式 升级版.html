@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型模式</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*
+        原型模式
+    */
+    
+    //基类 比如: 人
+    var BaseClass = function(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    BaseClass.prototype = {
+        play: function() {},
+        show: function() {}
+    }
+    //篮球运动员
+    var BasketSport = function(name, age){
+        //继承
+        BaseClass.call(this, name, age);
+    }
+    BasketSport.prototype = new BaseClass();
+    BasketSport.prototype.play = function() {
+        console.log(`姓名：${this.name}，年龄：${this.age}，职业：play basketball`)
+    }
+    //足球运动员
+    var FootSport = function(name, age, sex) {
+        //继承
+        BaseClass.call(this, name, age);
+        this.sex = sex;
+    }
+    FootSport.prototype = new BaseClass();
+    FootSport.prototype.show = function() {
+        console.log(`姓名：${this.name}，性别：${this.sex}，年龄：${this.age}，职业：play football`)
+    }
+    //测试
+    var basketmen = new BasketSport('姚明',18);
+    basketmen.play();  //姓名：姚明，年龄：18，职业：play basketball
+    var footmen = new FootSport('梅西', 20, '男');
+    footmen.show();    //姓名：梅西，性别：男，年龄：20，职业：play football
+
+
+    
+
+
+</script>
+</html>
