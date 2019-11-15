@@ -27,8 +27,9 @@
     function SubClass() {
         this.subFlag = false;
     }
-    //继承父类
-    SubClass.prototype = new SuperClass();
+    //继承父类  
+    // SubClass.prototype = new SuperClass();
+    SubClass.prototype = Object.create(SuperClass.prototype); 
     //为子类添加共有方法
     SubClass.prototype.getSubFlag = function() {
         return this.subFlag;

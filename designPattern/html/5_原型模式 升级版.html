@@ -29,7 +29,8 @@
         //继承
         BaseClass.call(this, name, age);
     }
-    BasketSport.prototype = new BaseClass();
+    // BasketSport.prototype = new BaseClass();
+    BasketSport.prototype = Object.create(BaseClass.prototype);
     BasketSport.prototype.play = function() {
         console.log(`姓名：${this.name}，年龄：${this.age}，职业：play basketball`)
     }
@@ -40,6 +41,7 @@
         this.sex = sex;
     }
     FootSport.prototype = new BaseClass();
+    FootSport.prototype = Object.create(BaseClass.prototype)
     FootSport.prototype.show = function() {
         console.log(`姓名：${this.name}，性别：${this.sex}，年龄：${this.age}，职业：play football`)
     }
