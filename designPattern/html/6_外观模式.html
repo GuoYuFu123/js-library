@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外观模式</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*
+        外观模式
+    */
+    // cpu    
+    function Cpu() {
+        this.open = function() {
+            console.log("start cpu");
+        }        
+    }
+    // 内存
+    function Memory() {
+        this.open = function() {
+            console.log("start memory");
+        } 
+    }
+    // 硬盘
+    function Disk() {
+        this.open = function() {
+            console.log("start Disk");
+        } 
+    }
+    // 外观类
+    function Computer()  {
+        this.open = function() {
+            //启动cpu
+            new Cpu().open();
+            //启动内存
+            new Memory().open();
+            //启动硬盘
+            new Disk().open();
+        }
+    }
+
+    //测试：一键启动
+    new Computer().open()
+</script>
+</html>
