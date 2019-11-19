@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>适配器模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    适配器模式 2019.11.19 10:18
+*/
+    // google地图
+    var googleMap  = {
+        show: function() {
+            console.log('start google map');
+        }
+    }
+    // 百度地图
+    var baiduMap = {
+        display: function() {
+            console.log('start baidu map');
+        }
+    }
+    // 百度地图适配器
+    var baiduMapAdapter = {
+        show: function() {
+            return baiduMap.display();
+        }
+    }
+    //渲染地图
+    var renderMap = function(mapName) {
+        if(mapName.show instanceof Function) {
+            mapName.show();
+        }
+    }
+    //场景：同一个方法需要调用不同的实体类来实现，那么就需要我们来写一个适配器
+    renderMap(googleMap);            // start google map
+    renderMap(baiduMapAdapter);      // start baidu map
+
+    // 参数适配器
+    //就是咱们常说的默认参数
+    function paramsAdapter(obj) {
+        var initParams = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+        var name = obj.name || initParams.name;
+        var age = obj.age || initParams.age;
+        var sex = obj.sex || initParams.sex;
+        console.log(name, age, sex)
+        // do soma things
+    }
+    // es6中我们可以这样
+    function paramsAdapterEs6(name='张三', age=18, sex='男') {
+        console.log(name, age, sex)
+        // do soma things
+    }
+
+    // 数据适配器    
+    var arrToObjAdapter =function(arr) {    
+        return {
+            name: arr[0],
+            age: arr[1],
+            sex: arr[2]
+        }
+    }
+    var arrData = ['张三', 18, '男'];
+    /* 场景：假如我们之前是用对象渲染的数据，现在接口发生变化传回来的数据是数组，
+    那么就需要我们自己实现一个数据适配器*/
+    var obj = arrToObjAdapter(arrData);
+    console.log(obj);
+
+
+
+</script>
+</html>
