@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>代理模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        代理模式
+    */
+    var diaosi = {
+        sendFlower: function (girl) {
+            girl.recieveFlower();
+        }
+    }
+    var girl = {
+        mood: null,
+        moodTimer: null,
+        words:'',
+        recieveFlower: function () {
+            this.words = this.mood == 'good' ? "thanks" : 'get out'
+            console.log (this.words);
+            clearInterval(this.moodTimer);
+        },
+        changeMood: function () {//girl心情不断变化,屌丝要拜托老司机送花
+            this.moodTimer = setInterval(() => {
+                this.mood = Math.random() - 0.5 > 0 ? 'good' : "sad";
+                console.log('gril的心情'+ this.mood)
+            },300)
+        },
+        reject: function() {
+            console.log('女神已拒绝')
+        }
+    }
+    var oldDriver = {
+        initPrice: function(money) {
+            if(money < 1000) {
+                girl.reject();
+            } else {
+                girl.recieveFlower();
+            }
+        },
+        watch: function(){
+            var timer = setInterval(() =>{
+                var mood = girl.mood;
+                //监视女神心情
+                if(mood == 'good'){
+                    diaosi.sendFlower(girl);
+                    clearInterval(timer)
+                }
+            },300)
+        }
+    }
+    girl.changeMood()
+    oldDriver.watch()
+
+    oldDriver.initPrice(100);   // 女神已拒绝
+
+    // 保护代理
+    // 低于1000，女神拒绝，太小气了， 大于1000，女神才考虑，
+
+    // 虚拟代理
+    var newImage = function (src, el) {
+        el.innerHtml = '';
+        var imgNode = document.createElement('img');
+        imgNode.src = src;
+        el.appendChild(imgNode);
+    }
+    var proxyImage = function (src, el) {
+        newImage('default.png', el);
+        var img = new Image();
+        img.src = src;
+        img.onload = function () {
+            newImage(src, el);
+        };
+    };
+
+    // 缓存代理
+    var result = {}
+    function queryData(params) {
+        $.ajax({
+            type: 'GET',
+            url: 'APi的路径',
+            data: params,
+            success: function(data){
+            var key = JSON.stringify(params)
+            result[key] = data
+            dosomething(key)
+            }
+        })
+    }
+    function dosomething(key) {
+        // 执行某些获取到数据后的操作
+        // do some thing about result[key]
+    }
+    function queryDataProxy(params) {
+        var key = JSON.stringify(params)
+        if (result[key]) {
+            dosomething(key)
+            return
+        } else {
+            queryData(params)
+        }
+    }
+</script>
+</html>

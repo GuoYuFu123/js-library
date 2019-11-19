@@ -35,7 +35,7 @@
 - 装饰器模式（Decorator Pattern）
 - [外观模式（Facade Pattern）](./markdown/6_外观模式.md)
 - 享元模式（Flyweight Pattern）
-- 代理模式（Proxy Pattern）
+- [代理模式（Proxy Pattern）](./markdown/8_代理模式.md)
 
 ###### **行为型模式** 
 
