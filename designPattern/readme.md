@@ -32,7 +32,7 @@
 - 桥接模式（Bridge Pattern）
 - 过滤器模式（Filter、Criteria Pattern）
 - 组合模式（Composite Pattern）
-- 装饰器模式（Decorator Pattern）
+- [装饰器模式（Decorator Pattern）](./markdown/9_装饰者模式.md)
 - [外观模式（Facade Pattern）](./markdown/6_外观模式.md)
 - 享元模式（Flyweight Pattern）
 - [代理模式（Proxy Pattern）](./markdown/8_代理模式.md)

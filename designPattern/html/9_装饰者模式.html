@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>装饰者模式</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*
+        装饰者模式 2019.11.26 20.26
+    */
+    function addDecorator(fn, before,after){
+        let isFn = fn => typeof fn === "function";
+
+        if (!isFn(fn)) {
+            return () => {};
+        }
+
+        return (...args) => {
+            let result = null;
+            //顺序进行“装饰函数”
+            isFn(before) && before(...args);
+            // 保存返回原函数的结果
+            isFn(fn) && (result = fn(...args))
+            isFn(after) && after(...args);
+            return result;
+        }
+    }
+
+    //测试代码
+    function beforeFn(...args) {
+        console.log(`beforeFn run and params = ${args}`)
+    }
+    function Fn(name = 'guoguo') {
+       return name;
+    }
+    function afterFn(...args) {
+        console.log(`beforeFn run and params = ${args}`)
+    }
+
+    let wrapperFn = addDecorator(Fn, beforeFn, afterFn);
+    let result = wrapperFn('guoguo is fe')
+    console.log(result);
+
+
+</script>
+</html>
