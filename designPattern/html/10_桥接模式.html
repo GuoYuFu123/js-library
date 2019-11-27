@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>桥接模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        桥接模式
+    */
+    
+    function Run(speed) {
+        this.speed = speed;
+        this.run = function() {
+            console.log(`speed = ${this.speed}`);
+        }
+    }
+    function Draw(color) {
+        this.color = color;
+        this.draw = function() {
+            console.log(`color = ${this.color}`);
+        }
+    }
+    function Sang(song) {
+        this.song = song;
+        this.sang = function() {
+            console.log(`song = ${this.song}`)
+        }
+    }
+    // 测试中的Car和Men就是一个桥梁，将各种小的部分进行组装
+    function Car(speed, color) {
+        this.speed = new Run(speed);
+        this.color = new Draw(color);
+        this.init = function() {
+            this.speed.run();
+            this.color.draw();
+        }
+    }
+    function Men(speed, song) {
+        this.speed = new Run(speed);
+        this.sang = new Sang(song);
+        this.init = function() {
+            this.speed.run();
+            this.sang.sang();
+        }
+    }
+    // 实例化
+    new Car(100, 'red').init()
+    new Men(80, '两只老虎').init()
+</script>
+</html>

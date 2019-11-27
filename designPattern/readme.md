@@ -29,7 +29,7 @@
 ###### **结构型模式** 
 
 - [适配器模式（Adapter Pattern）](./markdown/7_适配器模式.md)
-- 桥接模式（Bridge Pattern）
+- [桥接模式（Bridge Pattern）](./markdown/10_桥接模式.md)
 - 过滤器模式（Filter、Criteria Pattern）
 - 组合模式（Composite Pattern）
 - [装饰器模式（Decorator Pattern）](./markdown/9_装饰者模式.md)
