@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组合模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        组合模式
+    */
+    //类似于树状结构，以文件夹为例，模拟文件扫描的效果
+
+    // 文件类 Files防止与构造函数File混淆
+    function Files(name) {
+        this.name = name || "File";
+        this.add = function() {
+            throw new Error('文件下不能进行添加')
+        }
+        this.scan = function() {
+            console.log('扫描文件:' + this.name);
+        }
+    }
+    // 文件夹类
+    function Folder(name) {
+        this.name = name || "Folder";
+        this.files = [];
+        this.add = function(file) {
+            this.files.push(file);
+        }
+        // 深度递归
+        this.scan = function() {
+            console.log('扫描文件:' + this.name);
+            for (let file of this.files) {
+                file.scan();
+            }
+        }
+    }
+    // 测试
+    let home = new Folder('用户根目录');
+
+    let folder1 = new Folder('第一个文件夹'),
+        folder2 = new Folder('第二个文件夹');
+
+    let file1 = new Files("第一个文件"),
+        file2 = new Files("第二个文件"),
+        file3 = new Files("第三个文件");
+
+    folder1.add(file2);
+    folder2.add(file3);
+
+    home.add(file1);
+    home.add(folder1);
+    home.add(folder2);
+
+    home.scan();
+
+</script>
+</html>
