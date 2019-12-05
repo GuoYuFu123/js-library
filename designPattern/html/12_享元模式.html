@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>享元模式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            margin: 20px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            font-size: 40px;            
+            line-height: 100px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div><button class="next">下一个</button><div>
+</body>
+<script>
+    /*
+        享元模式 2019.12.05
+    */
+    /* case1: 假如我们有一个新闻，一个页面显示5条，点击下一步，看下一个5条，这个过程，我们是不是第一感觉是不是追加dom或者替换dom么?接下来，看一下我们看一下通过享元模式进行dom共享，是怎么实现的？
+    分析：
+    1、首先我们要分析这个过程，将这个场景分析2个状态，一个是内部状态，一个是外部状态；
+        内部状态：    可以被对象集合共享，通常不会改变
+        外部状态：    根据应用场景经常改变
+    2、通过第一条，我们可以知道，内部状态就是咱们dom集合，大量重复的dom，可以共享； 外部状态就是咱们根据业务场景进行改变的，也就是咱们的新闻内容。
+    3、coding...
+    */
+    // 享元类
+    var FlyWeight = function() {
+        this.domArr = [];
+        // 创建一个新的dom
+        this.create = function() {
+            let dom = document.createElement("div");
+            document.getElementById('box').appendChild(dom);
+            dom.setAttribute('class','item')
+            this.domArr.push(dom);
+            return dom;
+        }
+        // 获取dom节点
+        this.getDiv = function() {
+            if (this.domArr.length < 5) {
+                return this.create();
+            } else {
+                // 获取第一个元素插到dom池的最后一个; 对dom元素进行复用
+                let dom  = this.domArr.shift();
+                this.domArr.push(dom);
+                return dom;
+            }
+        }
+    }
+    // 实例化享元类
+    var flyweight = new FlyWeight();
+    // 预先填满5个
+    var page = 0, // 当前页
+        num = 5;  // 一页多少条
+    
+    var article = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14'];
+    
+    //先渲染5个
+    for (let i = 0; i < 5; i++) {
+        if (article[i]) {
+            flyweight.getDiv().innerHTML = article[i];
+        } else {
+            break;
+        }
+    }
+
+    // 下一页的功能
+    document.querySelector('.next').onclick = function() {
+        page ++;
+        let nextPageIndexStart = page * num;  // 第n页的第一个新闻的index
+        if (page < Math.ceil(article.length / num)) {
+            for(let i = 0; i < 5; i++) {
+                if (article[nextPageIndexStart + i]) {
+                    flyweight.getDiv().innerHTML = article[nextPageIndexStart + i];
+                } else {
+                    flyweight.getDiv().innerHTML = "";
+                }
+            }
+        } else {
+            console.log('无下一页')
+            return false;
+        }
+    }
+
+
+
+    /*
+    case2: 其实在面向对象方面，我们也是很常用的，例如：我们不管是人类，还是精灵，甚至一个物品，都有自己的高度和宽度，那是不是就可以使用共享模式呢？下面我们就用es6的class来实现一个；
+    分析：  内部状态： 共有的，通用的，可以的共享的就是通用类
+            外部状态： 就是每个类不同的特征 
+    */
+    // 享元类
+    class Common{
+        constructor(width, height) {
+            this.width = width;
+            this.height = height;
+        }
+        commonHandle() {
+            console.log(`width=${this.width},height=${this.height}`);
+        }
+    }
+    // 人类除了有width和height， 还有性格
+    class People extends Common {
+        constructor(width, height, feature) {
+            super(width, height);
+            this.feature = feature;
+        }
+        featureHandle() {
+            console.log(`feature=${this.feature}`);
+        }
+    }
+    // 精灵除了有width和height，还有魔法
+    class Elf extends Common {
+        constructor(width, height, magic) {
+            super(width,height)           
+            this.magic = magic;
+        }
+
+        magicHandle() {
+            console.log(`magic=${this.magic}`)
+        }
+    }
+
+    // 测试
+    var people = new People(10, 20, '开朗');
+    people.commonHandle();
+    people.featureHandle();
+    var elf = new Elf(30,40, '会飞');
+    elf.commonHandle();
+    elf.magicHandle();
+</script>
+</html>
