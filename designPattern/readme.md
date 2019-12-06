@@ -48,7 +48,7 @@
 - 状态模式（State Pattern）
 - 空对象模式（Null Object Pattern）
 - 策略模式（Strategy Pattern）
-- [模板方法模式（Template Pattern）](./markdown/13_模板方法模式)
+- [模板方法模式（Template Pattern）](./markdown/13_模板方法模式.md)
 - 访问者模式（Visitor Pattern）
 
 ###### **J2EE 模式** 
