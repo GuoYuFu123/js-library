@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板方法模式</title>
+</head>
+<body>
+    <div id='content'></div>
+</body>
+<script>
+    /*
+        模板模式 2019.12.06 11:00
+    */
+    /* 
+        case1: 创建三类导航，第一类是基础的，第二类是多了消息功能，第三类是读了后面显示网址功能，
+        我们可以使用模板模式进行实现，这个时候我们就需要抽象出最简单的基础导航类。
+    */
+
+    // tools
+    function formateString(tpl, data) {
+        return tpl.replace(/\{#(\w+)#\}/g, function(match, key) {
+            return typeof data[key] === "undefined" ? "" : data[key];
+        })
+    }
+    // 基础导航类
+    var Nav = function(data) {
+        // 基础导航样式模板
+        this.item = `<p><a href="{#href#}" title="{#title#}">{#name#}</a></p>`;
+        // 创建字符串
+        this.html = '';
+        // 格式化数据
+        for(var i = 0; i < data.length; i++) {
+            this.html += formateString(this.item, data[i]);
+        }
+        return this.html;
+    }
+    
+    // 消息模板导航类，我们只需要对其额外的添加消息提醒模板，并用消息提醒组件模板对传入的网址数据进行装饰处理，得到所需要的字符串，再调用基础类的中继承处理这些字符串即可
+    var NumNav = function(data) {
+        var tpl = `<b>{#num#}</b>`;
+        for(var i = 0; i < data.length; i++) {
+            data[i].name += data[i].name + formateString(tpl, data[i])
+        }
+        return Nav.call(this, data);
+    }
+    // 带有链接的导航类，同样的道理
+    var LinkNav = function(data) {
+        var tpl = `<span>{#href#}</span>`;
+        for(var i = 0; i < data.length; i++) {
+            data[i].name += data[i].name + formateString(tpl, data[i])
+        }
+        return Nav.call(this, data);
+    }
+
+    // 测试
+    var data = [{
+            href: 'http://www.baidu.com/',
+            title: '百度一下',
+            name: '百度',
+            num: 10
+        },{
+            href: 'http://www.taobao.com/',
+            title: '淘宝商城',
+            name: '淘宝',
+            num: 20
+        },{
+            href: 'http://www.qq.com/',
+            title: '腾讯首页',
+            name: '腾讯',
+            num: 30
+        }
+    ]
+    var contentDom = document.querySelector('#content');
+    // 基础类测试
+    contentDom.innerHTML = Nav(data)
+    // 消息提醒类
+    // contentDom.innerHTML = NumNav(data)
+    // 链接类
+    // contentDom.innerHTML = LinkNav(data);
+
+
+
+
+/***************************************************************************************************/
+    /*
+        case2: 来对比一下 泡茶 和 冲咖啡的异同
+        ************************************
+        * 步骤 |      茶    |   咖啡     *
+        * 1    * 烧水       *  烧水      *
+        * 2    * 放茶       *  放茶      *
+        * 3    * 倒入杯子   *  倒入杯子  *
+        * 4    * 加枸杞     *  加糖      *
+        已上可以分析出，第一步和第三步是固定的，第二步和第四步是根据场景来的，模板模式就是父类将流程写好，子类去进行扩展, 如果某一步是根绝客人的口味来的，可以添加钩子进行控制，默认是ture
+    */
+    // 模板类，流程已好
+    class Drinks {
+        constructor(type) {
+            this.type = type;
+        }
+        first() {
+            console.log(`${this.type}---烧水`);
+        }
+        second() {
+            throw new Error(`${this.type}---second方法未重写`)
+        }
+        third() {
+            console.log(`${this.type}---倒入杯子`);
+        }
+        four() {
+            throw new Error(`${this.type}---four方法未重写`)
+        }
+        // 钩子控制
+        isNeedFour() {
+            return true;
+        }
+        init() {
+            this.first();
+            this.second();
+            this.third();
+            if (this.isNeedFour()) {
+                this.four();
+            }
+        }
+    }
+    // 茶
+    class Tea extends Drinks {
+        constructor(type) {
+            super(type)
+        }
+        second() {
+            console.log(`${this.type}---加上等好茶`);
+        }
+        four() {
+            console.log(`${this.type}---加枸杞 end`);
+        }
+    } 
+    // 咖啡
+    class Coffee extends Drinks {
+        constructor(type) {
+            super(type)
+        }
+        second() {
+            console.log(`${this.type}---加上等咖啡`);
+        }
+        isNeedFour() {
+            return window.confirm(`${this.type}---是否进行第四步`)
+        }
+        four() {
+            console.log(`${this.type}---加糖 end`);
+        }
+    } 
+
+    // 测试
+    new Tea('茶叶').init();
+    new Coffee('咖啡').init();
+</script>
+</html>
