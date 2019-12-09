@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>观察者模式[发布-订阅者模式]</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        观察者模式[发布-订阅者模式]
+    */
+    /* 场景： 听说apple马上要出apple2020了，我得赶紧预定一个，然后就在网上用自己的手机号，在apple中心进行了手机预定，如果有货了，apple中心就会发短信进行提醒我。  
+    分析： 我就是一个订阅者，在apple中心进行了订阅，当有手机了的时候，apple中心就会通过手机短信发布消息，如果我突然不想预定了，可以在apple中心取消预定。
+    */
+
+    // 观察类
+    class Observer{
+        constructor() {
+            this.handles = {} // 事件处理集合  {appleX: [...fns],}   
+        }
+        // 订阅
+        on(eventType, fn) {
+            if (!this.handles.hasOwnProperty(eventType)) {
+                this.handles[eventType] = [];
+            }
+            if (typeof fn == 'function') {
+                this.handles[eventType].push(fn);
+            } else {
+                throw new Error("缺少回调函数");
+            }
+            console.log(this.handles[eventType])
+            return this; // 链式调用
+        }
+        // 发布
+        emit(eventType, ...agrs) {
+            if (this.handles.hasOwnProperty(eventType)) {
+                this.handles[eventType].forEach((item) => {
+                    item.apply(null, agrs)
+                })
+            } else {    
+                throw new Error(`${eventType}事件，还未进行注册`);
+            }
+            return this;
+        }
+        // 取消
+        off(eventType, fn) {
+            if (!this.handles.hasOwnProperty(eventType)) {
+                throw new Error(`${eventType}事件，还未进行注册`);
+            } else if (typeof fn != "function" ) {
+                throw new Error("缺少回调函数");
+            } else {
+                this.handles[eventType].forEach((item, index, arr) => {
+                    if (item.toString() == fn.toString()) {
+                        arr.splice(index, 1);
+                    }
+                })
+            }
+            return this;
+        }
+    }
+
+    var observer = new Observer();
+
+    observer.on('apple2020',(...args) => {
+        console.log(args.join(""));
+    }).on('apple2020', (...args) => {
+        console.log(args.join(""))
+    }).on('appleX', (...args) => {
+        console.log(args.join(''))
+    }).off('appleX',(...args) => {
+        console.log(args.join(''))
+    })
+
+    observer.emit('apple2020', 'apple2020手机有货了');
+    observer.emit('appleX', 'appleX手机有货了');
+</script>
+</html>
