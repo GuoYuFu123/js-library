@@ -44,7 +44,7 @@
 - 迭代器模式（Iterator Pattern）
 - 中介者模式（Mediator Pattern）
 - 备忘录模式（Memento Pattern）
-- 观察者模式（Observer Pattern）
+- [观察者模式（Observer Pattern）](./markdown/14_观察者模式.md)
 - 状态模式（State Pattern）
 - 空对象模式（Null Object Pattern）
 - 策略模式（Strategy Pattern）
