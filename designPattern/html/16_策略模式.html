@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>策略模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        策略模式 2019.12.11 
+    */
+
+    /*
+        策略模式实现的核心就是：将算法的使用和算法的实现分离。
+        算法的实现交给策略类。算法的使用交给环境类，环境类会根据不同的情况选择合适的算法
+    */
+
+    // case: 马上到年底了，各位大佬们是不是都准备拿年终奖呀，可能这个年终奖跟KPI有关， A级的3倍工资，B级的2倍工资，c级的1倍工资，d级的口头鼓励
+    /*
+        if (level == 1) {
+            return salay *1;
+        } else if (level == 2) {
+            ....
+        }
+    */
+    // 策略类
+    var StrategyFn = function() {
+        var Strategy = {
+            "A": function(salary) {
+                console.log(salary * 3);
+            },
+            "B": function(salary) {
+                console.log(salary * 2);
+            },
+            "C": function(salary) {
+                console.log(salary * 1);
+            },
+            "D": function(salary) {
+                console.log("口头鼓励");
+            }
+        }
+        return function(salary, level) {
+            Strategy[level] && Strategy[level](salary);
+        }
+    }
+    // 测试
+    StrategyFn()(1000, 'A');
+    StrategyFn()(1000, 'D');
+
+
+    // case 2 表单验证
+    var formValidation = {
+        number: function(value) {
+            console.log('校验数字')
+        },
+        phone: function(value) {
+            console.log("校验手机")
+        },
+        // ...
+    }
+    //然后在校验某一项的的时候,直接调用即可
+    console.log(formValidation.number("1204"));
+</script>
+</html>
