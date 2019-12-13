@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>职责链模式</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*
+        职责链模式 2019.12.12  10:20
+    */
+    /* case : 我们研发部小明同学要采购一批物资，在oa上走流程；
+        1、首先到了采购部，金额太大，得上报总经理；小于1 000元；
+        2、总经理一看，金额太大，得上报董事长； 小于10 000元
+        3、董事长一看，同意。
+
+        A ->  B  ->  C  -> .......
+    */
+    class Handler {
+        constructor() {
+            this.next = null;
+        }
+        // 设置下一个处理人
+        setNext(handler) {
+            this.next = handler;
+        }
+        // 获取处理结果
+        handleRes() {
+            throw new Error('该方法未被重写');
+        }
+    }
+    // 采购部
+    class CGBHandler extends Handler {
+        handleRes(money) {
+            if (money < 1000) {
+                console.log('同意，CGB处理逻辑');
+            } else {
+                console.log('只能处理1 000元以内的，领导审批')
+                this.next && this.next.handleRes(money)
+            }
+        }
+    }
+    // 总经理
+    class ZJLHandler extends Handler {
+        handleRes(money) {
+            if (money < 10000) {
+                console.log('同意，ZJL处理逻辑');
+            } else {
+                console.log('只能处理10 000元以内的，领导审批')
+                this.next && this.next.handleRes(money)
+            }
+        }
+    }
+    // 董事长
+    class DSZHandler extends Handler {
+        handleRes(money) {
+            if (money >= 10000) {
+                console.log('同意，我是大boss，我来处理');
+            }
+        }
+    }
+
+    // 构建职责链
+    var cgb = new CGBHandler();
+    var zjl = new ZJLHandler();
+    var dsz = new DSZHandler();
+    cgb.setNext(zjl);
+    zjl.setNext(dsz);
+
+    // 测试
+    cgb.handleRes(1000);
+
+
+</script>
+</html>
