@@ -38,7 +38,7 @@
 
 ###### **行为型模式** 
 
-- 责任链模式（Chain of Responsibility Pattern）
+- [职责链模式](./markdown/17_职责链模式.md)
 - 命令模式（Command Pattern）
 - 解释器模式（Interpreter Pattern）
 - 迭代器模式（Iterator Pattern）
