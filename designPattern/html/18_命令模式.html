@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>命令模式</title>
+</head>
+<body>
+    <button id="btn1">refersh</button>
+    <button id="btn2">refersh && add</button>    
+</body>
+<script>
+    // 命令模式 2019.12.20 10:22  发送者， 传送者， 执行者
+    
+    //接到命令，执行相关的操作 
+    var refershMenu = {
+        refresh: function() {
+            console.log("refersh");
+        }
+    }
+    // 命令对象
+    var refershMenuCommand = (receiver) =>{
+        return {
+            execute() {
+                receiver.refresh();
+            }
+        }
+    }
+    // 设置命令
+    var setCommand = (button, command) => {
+        button.onclick = () => {
+            command.execute();
+        }
+    }
+    // 测试
+    let btn1 = document.querySelector("#btn1");
+    let refreshMenuCommand1 =  refershMenuCommand(refershMenu);
+    setCommand(btn1, refreshMenuCommand1)
+
+
+    // 宏命令 一组命令的集合，通过执行宏命令的方式，可以一次执行一批命令。
+    // 命令执行者
+    var addMenu = {
+        add: function() {
+            console.log("add");
+        }
+    }
+    // 命令对象
+    var addMenuCommand = (receiver) => {
+        return {
+            execute() {
+                receiver.add();
+            }
+        }
+    }
+    var command = {
+        commandList: [],
+        add(command) {
+            this.commandList.push(command);
+        },
+        execute() {
+            this.commandList.forEach(command => command.execute())
+        }
+    }
+    
+
+</script>
+</html>
