@@ -49,19 +49,9 @@
 - 空对象模式（Null Object Pattern）
 - [策略模式（Strategy Pattern）](./markdown/16_策略模式.md)
 - [模板方法模式（Template Pattern）](./markdown/13_模板方法模式.md)
-- 访问者模式（Visitor Pattern）
+- [访问者模式（Visitor Pattern）](./markdown/19_访问者模式.md)
 
 ###### **J2EE 模式** 
-
-- MVC 模式（MVC Pattern）
-- 业务代表模式（Business Delegate Pattern）
-- 组合实体模式（Composite Entity Pattern）
-- 数据访问对象模式（Data Access Object Pattern）
-- 前端控制器模式（Front Controller Pattern）
-- 拦截过滤器模式（Intercepting Filter Pattern）
-- 服务定位器模式（Service Locator Pattern）
-- 传输对象模式（Transfer Object Pattern）
-
 
 
 #### 六大原则

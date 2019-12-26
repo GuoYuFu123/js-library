@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>访问者模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        访问者模式  2019.12.25 19:28
+    */
+    var Visitor = (function() {
+        return {
+            splice: function() {
+                // splice 方法擦书，从原参数的第二个参数开始算起
+                var args = Array.prototype.splice.call(arguments, 1);
+                // 对第一个参数执行splice操作
+                return Array.prototype.splice.apply(arguments[0], args);
+            },
+            push: function() {               
+                // 强化类数组对象，使它拥有length属性
+                var len = arguments[0].length || 0;
+                // 添加的数据从第2个参数开始算起
+                var args = this.splice(arguments, 1);
+                // 校正length
+                arguments[0].length = len + arguments.length - 1
+                // 对第一个参数对象执行push方法
+                return Array.prototype.push.apply(arguments[0], args)
+            },
+            pop: function() {
+                // 对第一个对象执行pop方法
+                return Array.prototype.pop.apply(arguments[0])
+            }
+        }
+    })()
+
+    var obj = new Object();
+    Visitor.push(obj, 1, 2, 3, 4, 5);
+    console.log(obj);
+    Visitor.pop(obj);
+    console.log(obj);
+    Visitor.splice(obj, 0, 1);
+    console.log(obj)
+</script>
+</html>
