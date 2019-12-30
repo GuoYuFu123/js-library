@@ -39,10 +39,10 @@
 ###### **行为型模式** 
 
 - [职责链模式](./markdown/17_职责链模式.md)
-- 命令模式（Command Pattern）
+- [命令模式（Command Pattern）](./markdown/18_命令模式.md)
 - 解释器模式（Interpreter Pattern）
 - 迭代器模式（Iterator Pattern）
-- [中介者模式（Mediator Pattern）](./markdown/20_中介者模式)
+- [中介者模式（Mediator Pattern）](./markdown/20_中介者模式.md)
 - 备忘录模式（Memento Pattern）
 - [观察者模式（Observer Pattern）](./markdown/14_观察者模式.md)
 - [状态模式（State Pattern）](./markdown/15_状态模式.md)
