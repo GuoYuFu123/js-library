@@ -8,6 +8,7 @@
 1.JavaScript高级程序设计(红宝书)
 2.dom编程艺术
 3.JavaScript权威指南(字典书籍)
+4.JavaScript设计模式
 ```
 
 ##### 数据结构和算法

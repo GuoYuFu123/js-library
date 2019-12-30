@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中介者模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        中介者模式： 类似房中介，我们如果想要知道某个房屋的信息，就去中介那里注册一下，然后房屋有消息了，
+            中介就会发送给我们一个消息
+    */
+    var Mediator = (function() {
+        var msg = {};
+        return {
+            register: function(type, action) {
+                if (msg[type]) {
+                    msg[type].push(action);
+                } else {
+                    msg[type] = [action];
+                }
+            },
+            send: function(type) {
+                if (msg[type]) {
+                    msg[type].forEach(action => {
+                        action();
+                    })
+                } else {    
+                    throw new Error("未找到相应的type")
+                }
+            }
+        }
+    })()
+
+    // 进行消息订阅
+
+    Mediator.register('apple', function() {
+        console.log('收到1');
+    })
+    Mediator.register('apple', function() {
+        console.log('收到2');
+    })
+
+    // 中介来发布消息
+    Mediator.send("apple")
+</script>
+</html>
