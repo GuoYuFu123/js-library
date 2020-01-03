@@ -43,7 +43,7 @@
 - 解释器模式（Interpreter Pattern）
 - 迭代器模式（Iterator Pattern）
 - [中介者模式（Mediator Pattern）](./markdown/20_中介者模式.md)
-- 备忘录模式（Memento Pattern）
+- [备忘录模式（Memento Pattern）](./markdown/21_备忘录模式.md)
 - [观察者模式（Observer Pattern）](./markdown/14_观察者模式.md)
 - [状态模式（State Pattern）](./markdown/15_状态模式.md)
 - 空对象模式（Null Object Pattern）

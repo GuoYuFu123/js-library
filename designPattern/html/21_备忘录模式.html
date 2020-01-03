@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>备忘录模式（Memento Pattern）</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        备忘录模式（Memento Pattern）
+    */
+    /* case: 我们都写过分页数据，当请求下一页的时候，会进行数据的请求，当点击上一页的时候，我们还会进行数据请求么？ */
+
+    var page = function(page) {
+        // 数据缓存|备忘录
+        var caches = {};
+        return function(page) {
+            if(caches[page]) {
+                showPage(page, caches[page])
+            } else {
+                getData("/url", function(data) {
+                    showPage(page, data);
+                    caches[page] = data;
+                })
+            }
+        }
+    }
+    // 模拟获取数据
+    function getData(url, cb) {
+        cb(Math.random())
+    }
+    // 模拟显示数据
+    function showPage(page, data) {
+        console.log(`显示${page}页的数据${data}`)
+    }
+
+    var pager = page(); 
+    pager(1);
+    pager(2);
+    pager(1);
+</script>
+</html>
