@@ -32,6 +32,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- promise [实现一个promise]
 	-- proxy [利用proxy实现vue的双向数据绑定]
 	-- throttle-debouce [节流与防抖]
+	-- waterMark [文本水印]
 
 未完待续...
 ```
