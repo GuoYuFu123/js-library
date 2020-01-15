@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>迭代器模式</title>
+</head>
+<body>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+/*
+    迭代器模式 2020.01.09  09:56
+*/
+
+// 一、jquery中的迭代器
+$.each([1,2,3,4,5], function(i, n) {
+    console.log(i, n)
+})
+
+// 二、自己实现一个迭代器[内部迭代器]
+var each = function(array, callback) {
+    for(var i = 0; i < array.length; i++) {
+        callback.call(array[i], i, array[i]);
+    }
+}
+each([1,2,3], function(i, n) {
+    console.log(i, n);
+})
+
+// 三、类似的轮播图[外部迭代器]
+var iterator = function(arr) {
+    var current = 0;
+    var pre = function() {
+        if (current === 0) {
+            return false;
+        } else {
+            current--
+        }        
+    }
+    var next = function() {
+        if (current < arr.length - 1) {
+            current ++;
+        } else {
+            current = arr.length - 1;
+        }
+    };
+    var get = function() {
+        return arr[current];
+    }
+
+    return { pre, next, get };    
+}
+
+</script>
+</html>
