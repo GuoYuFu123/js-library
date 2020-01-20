@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解释器模式</title>
+</head>
+<body>
+
+    
+</body>
+<script>
+    /*
+    * 解释器模式 2020.01.20  
+    * 解释器就是自己定义一套语法规则，通过解释器来按照指定的规则进行解释和实现相应的功能
+    */
+    let express = "\\dfrac{1}{2}"  // 这个就是二分之一我们需要一个解释器来生成
+
+    // 将表达式进行操作符和参数分离
+    function separate(express) {
+        var opt = express.match(/\\(.*?)\{/)
+        var value = express.match(/\d+/g);
+        return { operator: opt[1], value:value }
+    }
+    // 1、分数表达式........
+    function dfracExpression(content){
+        let top = content[0];
+        let btm = content[1];
+        console.log('...一系列操作~~~~f分数');
+    }
+    // 2、其他表达式
+    // function .....
+    
+    // 解释器
+    function interpre(express){
+        let separateObj = separate(express);
+        let func = separateObj.operator+'Expression';
+        func();
+    }
+
+</script>
+</html>
