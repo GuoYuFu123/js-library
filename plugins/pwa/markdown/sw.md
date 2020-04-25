@@ -63,7 +63,7 @@ if ('serviceWorker' in navigator) {
 
 ##### 注册成功
 
-![注册成功](./\注册成功.jpg)
+![注册成功](./注册成功.jpg)
 
 ##### 单纯的注册成功是没有什么用的，如何来缓存呢？这就需要我们依赖于cache来进行缓存了
 
@@ -136,17 +136,17 @@ self.addEventListener("message", event => {
 
 ##### 我们缓存的资源都在哪里了呢？都在cache的缓存里
 
-![资源缓存](./\资源缓存.jpg)
+![资源缓存](./资源缓存.jpg)
 
 #### 测试一下
 
 1、在不开启service work的情况下访问资源
 
-![不适用service work](D:\Program Files\phpStudy\WWW\pwa\markdown\不适用work.jpg)
+![不适用service work](./不适用work.jpg)
 
 2、使用service work访问资源
 
-![](D:\Program Files\phpStudy\WWW\pwa\markdown\使用work.jpg)
+![](./使用work.jpg)
 
 ####  结语
 
