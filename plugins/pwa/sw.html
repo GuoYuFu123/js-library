@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- <html lang="en" manifest="index.manifest"> -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pwa-service-work-test</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <h1>pwa</h1>
+  <h2>service-work</h2>
+  <img src="./e.png" />
+
+  <div id="model" style="display: none;">
+    <p>站点发生了更新</p>
+
+    <button onclick="skip()">立即更新</button>
+  </div>
+</body>
+<script>
+  // 改变modal的状态
+  function changeModel() {
+    document.getElementById("model").style.display =
+      document.getElementById("model").style.display === "none"
+        ? "block"
+        : "none";
+  }
+  // 立即更新
+  function skip() {
+    try {
+      changeModel();
+      navigator.serviceWorker.getRegistration().then(reg => {
+        reg.waiting.postMessage("skipWaiting");
+      });
+    } catch (e) {
+      window.location.reload();
+    }
+  }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        const isKillSw = false; // 是否杀死service work
+        const sw = navigator.serviceWorker;
+        if (isKillSw) {
+          sw.getRegistration("/pwa/sw.js").then(registration => {
+            // 手动注销
+            registration.unregister && registration.unregister();
+            // 清除缓存
+            window.caches &&
+              caches.keys &&
+              caches.keys().then(function(keys) {
+                keys.forEach(function(key) {
+                  caches.delete(key);
+                });
+              });
+          });
+        } else{
+          sw.register('/pwa/sw.js', {scope: '/pwa/'})
+            .then(function (registration) {
+                // 注册成功
+                console.log('ServiceWorker registration successful with scope: ', registration);
+                if (registration.waiting) {
+                  // 通知提示栏显示
+                  changeModel();
+                  return;
+                }
+                // 每当Registration.Installing属性获取新的sw时都会调用该方法
+                registration.onupdatefound = function() {
+                  const installingWorker = registration.installing;
+                  installingWorker.onstatechange = function() {
+                    switch (installingWorker.state) {
+                      case "installed":
+                        // 应为在sw第一次安装的时候也会调用onupdatefound，所以要检查是否已经被sw控制
+                        if (navigator.serviceWorker.controller) {
+                          changeModel();
+                          // 通知提示栏显示
+                        }
+                        break;
+                    }
+                  };
+                };
+            })
+            .catch(function (err) {
+                // 注册失败:(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+        
+    });
+  };
+  fetch("./data.json").then(res => {
+    console.log("fetch:", res)
+  });
+
+  
+  // manifest 缓存
+  // console.log(window.applicationCache, window.applicationCache.status, window.applicationCache.UPDATEREADY)
+  // window.applicationCache.addEventListener('updateready', function(e) {
+  //   console.log('updated')
+  //   if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+      
+  //     if (confirm('A new version of this site is available. Load it?')) {
+  //       window.applicationCache.update() 
+  //     }
+  //   } else {
+  //     alert('Manifest did not changed. Nothing new to server')
+  //     // Manifest didn't changed. Nothing new to server.
+  //   }
+  // }, false);
+  
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" manifest="index.manifest">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>manifest</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <h1>manifest</h1>
+</body>
+<script>  
+  // manifest 缓存
+  console.log(window.applicationCache, window.applicationCache.status, window.applicationCache.UPDATEREADY)
+  window.applicationCache.addEventListener('updateready', function(e) {
+    console.log('updated')
+    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+      
+      if (confirm('A new version of this site is available. Load it?')) {
+        window.applicationCache.update() 
+      }
+    } else {
+      alert('Manifest did not changed. Nothing new to server')
+      // Manifest didn't changed. Nothing new to server.
+    }
+  }, false);
+  
+</script>
+</html>
