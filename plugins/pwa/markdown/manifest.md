@@ -31,7 +31,7 @@ manifest 文件是一个简单的文本文件，列举出了浏览器用于离�
 
 2、是否走缓存了呢？
 
-![manifest缓存](D:\Program Files\phpStudy\WWW\pwa\markdown\manifest-test.jpg)
+![manifest缓存](.\manifest-test.jpg)
 
 ####  结语
 
