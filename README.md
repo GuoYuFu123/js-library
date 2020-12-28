@@ -13,6 +13,8 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 
 --  designPattern 【设计模式】
 
+--  flutter 【flutter系列】
+
 --  interviewQuestion 【面试题整理】
 
 --  leetcode 【leetcode刷题记录】
