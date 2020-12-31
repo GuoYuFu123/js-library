@@ -19,6 +19,9 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 
 --  leetcode 【leetcode刷题记录】
 
+--  node 【node相关】
+	-- download [文件下载]
+
 --  plugins 【插件系列】
 	-- canvas-circle-water  [canvas实现水滴进度图形]
 	-- jsZip [jszip实现文件解压缩]
