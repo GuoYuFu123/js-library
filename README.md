@@ -32,6 +32,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- markdown 【对应的markdown】
 	
 --  tools 【工具系列】
+	-- bind [手写bind]
 	-- canvasPaint [canvas画笔]
 	-- chainCall [链式调用的demo]
 	-- deepCopy [深拷贝]	

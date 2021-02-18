@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+        promise.all 的特点：
+
+        入参是个由Promise实例组成的数组
+        返回值是个promise，因为可以使用.then
+        如果全部成功，状态变为resolved, 并且返回值组成一个数组传给回调
+        但凡有一个失败，状态变为rejected, 并将error返回给回调
+       * */
+
+
+    function _all(pArr) {
+      if (!Array.isArray(pArr)) {
+        conosle.error("传入的为非数组元素");
+      }
+
+      return new Promise((resolve, reject) => {
+        let result = [];
+        let count = 0;
+        pArr.forEach(
+          (promise, index) => {
+            promise.then((res) => {
+              result.push(res);
+              count++;
+              count === pArr.length && resolve();
+            });
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+      });
+    }
+  </script>
+</html>

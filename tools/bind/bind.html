@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    Function.prototype.bind = function (context) {
+      // 调用 bind 的不是函数，需要抛出异常
+      if (typeof this !== "function") {
+        throw new Error(
+          "Function.prototype.bind - what is trying to be bound is not callable"
+        );
+      }
+
+      // this 指向调用者
+      var self = this;
+      // 实现第2点，因为第1个参数是指定的this,所以只截取第1个之后的参数
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      // 实现第3点,返回一个函数
+      return function () {
+        // 实现第4点，这时的arguments是指bind返回的函数传入的参数
+        // 即 return function 的参数
+        var bindArgs = Array.prototype.slice.call(arguments);
+        // 实现第1点
+        return self.apply(context, args.concat(bindArgs));
+      };
+    };
+  </script>
+</html>
