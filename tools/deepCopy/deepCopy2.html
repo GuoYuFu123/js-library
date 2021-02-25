@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * 深拷贝循环引用问题
+     * 重点： 主要是用map做一下cache，防止调用栈爆炸
+     */
+
+    function deepCopyFor(obj, map = new Map()) {
+      if (map.has(obj)) {
+        return map.get(obj);
+      }
+      let target = Array.isArray(obj) ? [] : {};
+      map.set(obj, target);
+      for (let key in obj) {
+        target[key] =
+          typeof obj[key] === "object" ? deepCopyFor(obj[key], map) : obj[key];
+      }
+      return target;
+    }
+
+
+    var A = { a: 1 };
+    A.A = A;
+
+    console.log(deepCopyFor(A));
+  </script>
+</html>
