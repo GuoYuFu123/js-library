@@ -17,10 +17,14 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 
 --  interviewQuestion 【面试题整理】
 
+--  jest 【单元测试】
+
 --  leetcode 【leetcode刷题记录】
 
 --  node 【node相关】
 	-- download [文件下载]
+	-- jwt [JSON Web Token]
+	-- middleware [中间件]
 
 --  plugins 【插件系列】
 	-- canvas-circle-water  [canvas实现水滴进度图形]
@@ -40,6 +44,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- promise [实现一个promise]
 	-- proxy [利用proxy实现vue的双向数据绑定]
 	-- throttle-debouce [节流与防抖]
+	-- typedoc [typescript文档化工具]
 	-- waterMark [文本水印]
 
 未完待续...

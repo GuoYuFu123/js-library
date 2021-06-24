@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * @param input
+     * @param size
+     * @returns {Array}
+     */
+    /**
+        _.chunk(['a', 'b', 'c', 'd'], 2)
+        // => [['a', 'b'], ['c', 'd']]
+
+        _.chunk(['a', 'b', 'c', 'd'], 3)
+        // => [['a', 'b', 'c'], ['d']]
+
+        _.chunk(['a', 'b', 'c', 'd'], 5)
+        // => [['a', 'b', 'c', 'd']]
+
+        _.chunk(['a', 'b', 'c', 'd'], 0)
+        // => []
+      */
+    function chunk(arr, num = 0) {
+      if (arr.length && num) {
+        let res = [];
+        let start = 0;
+        while (start < arr.length) {
+          res.push(arr.slice(start, start + num));
+          start += num;
+        }
+        console.log(res);
+      } else {
+        throw new Error("error");
+      }
+    }
+    var arr = ["a", "b", "c", "d", "e"];
+    console.log(chunk(arr, 3));
+  </script>
+</html>
