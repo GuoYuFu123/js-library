@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- https://mp.weixin.qq.com/s/-ZY90DdolnMsumPj3RfgVA  -->
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrap {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+        position: relative;
+      }
+
+      .text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /*多行超出省略*/
+        -webkit-box-orient: vertical;
+        line-height: 1.5;
+      }
+
+      .text::after {
+        content: "";
+        display: block;
+        height: 50px; /*随便给一个高度，也可以为0*/
+        margin-top: -70px; /* 本身高度+全文的高度*/
+      }
+
+      .copy {
+        background-color: #fff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /*多行超出省略*/
+        -webkit-box-orient: vertical;
+        line-height: 1.5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- css 超出3行，显示全文  -->
+    <div class="wrap">
+      <p class="text">
+        CSS的 margin-bottom
+        属性用于设置元素的底部外边距，允许设置负数值。一个正数值将让它相对于正常流与邻近块更远，而负数值将使得更近。CSS的
+        margin-bottom
+        属性用于设置元素的底部外边距，允许设置负数值。一个正数值将让它相对于正常流与邻近块更远，而负数值将使得更近。CSS的
+      </p>
+      <p class="copy">
+        CSS的 margin-bottom
+        属性用于设置元素的底部外边距，允许设置负数值。一个正数值将让它相对于正常流与邻近块更远，而负数值将使得更近。CSS的
+        margin-bottom
+        属性用于设置元素的底部外边距，允许设置负数值。一个正数值将让它相对于正常流与邻近块更远，而负数值将使得更近。CSS的
+      </p>
+      <a class="link" href="#">全文</a>
+    </div>
+  </body>
+</html>
