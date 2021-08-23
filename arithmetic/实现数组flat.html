@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实现数据的flat, 数据扁平化</title>
+  </head>
+  <body></body>
+  <script>
+    // 参考: https://github.com/q547114121/juejin/blob/master/one.html˝
+
+    var arr = [1, [2], [3, [4, 5]], 6];
+
+    // es6 flat的方法
+    function flatten(arr) {
+      return arr.flat(Infinity);
+    }
+
+    //for 循环
+    function flatten10(arr) {
+      let res = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+          res = res.concat(flatten10(arr[i]));
+        } else {
+          res.push(arr[i]);
+        }
+      }
+      return res;
+    }
+
+    //for循环 push
+    function flatten11(arr) {
+      let res = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+          res.push(...flatten11(arr[i]));
+        } else {
+          res.push(arr[i]);
+        }
+      }
+      return res;
+    }
+
+    // reduce 方法
+    function flatten12(arr) {
+      return arr.reduce((pre, next) => {
+        return pre.concat(Array.isArray(next) ? flatten12(next) : next);
+      }, []);
+    }
+
+    // 全数字形式的，扁平化方法，因为这几种，里面的数组也会被转为字符串
+    function flatten51(arr) {
+      return arr
+        .toString()
+        .split(",")
+        .map((i) => +i);
+    }
+    function flatten52(arr) {
+      return arr
+        .join()
+        .split(",")
+        .map((i) => +i);
+    }
+    function flatten53(arr) {
+      return arr
+        .join(",")
+        .split(",")
+        .map((i) => +i);
+    }
+    function flatten54(arr) {
+      return ("" + arr).split(",").map((i) => +i);
+    }
+
+    console.log(flatten(arr));
+    console.log(flatten10(arr));
+    console.log(flatten11(arr));
+    console.log(flatten12(arr));
+    console.log(flatten51(arr));
+    console.log(flatten52(arr));
+    console.log(flatten53(arr));
+    console.log(flatten54(arr));
+  </script>
+</html>
