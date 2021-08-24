@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>最小因子html</title>
+  </head>
+  <body></body>
+
+  <script>
+    /* 最小乘机
+        8 =>  [2,2,2]
+        6 =>  [2,3]
+        30 => [2,3,5]
+    */
+
+    let res = [];
+    let yinzi = 2;
+    function fn(num) {
+      if (num % yinzi === 0) {
+        res.push(yinzi);
+
+        if (num / yinzi !== 1) {
+          fn(num / yinzi);
+        }
+      } else {
+        yinzi++;
+        fn(num);
+      }
+    }
+
+    fn(42);
+    console.log(res);
+  </script>
+</html>
