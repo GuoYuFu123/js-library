@@ -51,7 +51,8 @@
         }
         return this.data;
       }
-      //插入排序
+      // 插入排序
+      // 类似于打扑克牌插牌，小的往前插，大的往后插，每次有了新牌，会插入，后续的牌后移
       insertionSort() {
         for (var i = 1; i < this.data.length; i++) {
           var temp = this.data[i];
@@ -79,6 +80,7 @@
         return this.data;
       }
       //快速排序
+      //  就是取一个基准值，哪个值也行，小的放左边，大的放右边，这样就有一个相对的顺序，然后左侧和右侧依次类推。。。
       quickSort(arr) {
         if (arr.length == 0) {
           return [];
