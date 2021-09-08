@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //https://leetcode-cn.com/problems/add-strings/
+    const n1 = "1237932343533453534534553453453";
+    const n2 = "3508345345";
+
+    // 惯性思维版
+    function addFn1(num1, num2) {
+      num1 = num1
+        .split("")
+        .map((item) => parseInt(item))
+        .reverse();
+      num2 = num2
+        .split("")
+        .map((item) => parseInt(item))
+        .reverse();
+
+      const length = num1.length > num2.length ? num1.length : num2.length;
+
+      const res = [];
+      let step = 0;
+      for (let i = 0; i < length; i++) {
+        let sum = (num1[i] ?? 0) + (num2[i] ?? 0) + step;
+        if (sum > 9) {
+          step = 1;
+          res.push(sum % 10);
+        } else {
+          step = 0;
+          res.push(sum);
+        }
+      }
+      if (step == 1) {
+        res.push(1);
+      }
+      return res.reverse().join("");
+    }
+    console.log(addFn1(n1, n2));
+
+    // 精简版
+    function addFn2(num1, num2) {
+      let res = [],
+        step = 0;
+      const n1L = num1.length,
+        n2L = num2.length,
+        length = n1L > n2L ? n1L : n2L;
+
+      for (let i = 0; i < length; i++) {
+        const sum =
+          Number(num1[n1L - i - 1] ?? 0) +
+          Number(num2[n2L - i - 1] ?? 0) +
+          step;
+        step = Math.floor(sum / 10);
+        res.unshift(sum % 10);
+      }
+      if (step == 1) {
+        res.unshift(1);
+      }
+      return res.join("");
+    }
+    console.log(addFn2(n1, n2));
+  </script>
+</html>
