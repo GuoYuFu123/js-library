@@ -10,7 +10,7 @@
   <script>
     // 参考: https://github.com/q547114121/juejin/blob/master/one.html˝
 
-    var arr = [1, [2], [3, [4, 5]], 6];
+    var arr = [1, [2], [3, 6, 6, 6, [4, 5]], 6, 6, 6, 6];
 
     // es6 flat的方法
     function flatten(arr) {
@@ -74,13 +74,44 @@
       return ("" + arr).split(",").map((i) => +i);
     }
 
-    console.log(flatten(arr));
-    console.log(flatten10(arr));
-    console.log(flatten11(arr));
-    console.log(flatten12(arr));
-    console.log(flatten51(arr));
-    console.log(flatten52(arr));
-    console.log(flatten53(arr));
-    console.log(flatten54(arr));
+    // 打平 & 去重
+    let flattenNotArr = [];
+    function flatten61(arr, origin = []) {
+      return arr.reduce((pre, next) => {
+        if (Array.isArray(next)) {
+          return pre.concat(flatten61(next, pre));
+        } else {
+          if (!pre.includes(next)) {
+            flattenNotArr = pre.concat(next);
+            return pre.concat(next);
+          } else {
+            flattenNotArr = pre;
+            return pre;
+          }
+        }
+      }, origin);
+    }
+    arr = [
+      1,
+      2,
+      2,
+      2,
+      2,
+      23,
+      [1, 2, 3, 5, 6, 7, 7, 7, 7, 7, 4, [54, 54, 54, 444]],
+    ];
+    arr = [1, 2, 2, 2, 2, 23];
+    console.log(flatten61(arr));
+    console.log(flattenNotArr);
+
+    // console.log(flatten(arr));
+    // console.log(flatten10(arr));
+    // console.log(flatten11(arr));
+    // console.log(flatten12(arr));
+    // console.log(flatten51(arr));
+    // console.log(flatten52(arr));
+    // console.log(flatten53(arr));
+    // console.log(flatten54(arr));
+    // 打平 & 去重
   </script>
 </html>

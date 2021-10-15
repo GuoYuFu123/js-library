@@ -17,7 +17,6 @@
         但凡有一个失败，状态变为rejected, 并将error返回给回调
        * */
 
-
     function _all(pArr) {
       if (!Array.isArray(pArr)) {
         conosle.error("传入的为非数组元素");
@@ -29,9 +28,18 @@
         pArr.forEach(
           (promise, index) => {
             promise.then((res) => {
-              result.push(res);
+              // 注意点1: index用来保证按序存储
+              result[index] = data;
+
+              // 下面这种没法保证顺序
+              // result.push(res);
+
+              // 注意点2: count用来保证获取到了想要的所有数据
               count++;
-              count === pArr.length && resolve();
+
+              // 注意点3: 用count 和 传入的pArr的长度比较，
+              // 注意点4: 不能用result的长度比较，因为有可能最后一个promise最先返回，会出现[undefined,undefined,last-res]
+              count === pArr.length && resolve(result);
             });
           },
           (err) => {
