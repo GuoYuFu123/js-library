@@ -1,5 +1,5 @@
 import 'intersection-observer';
-import { analytics } from '@zyb/analytics';
+import { analytics } from '@guoguo/analytics';
 import { VNode } from 'vue/types/umd';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

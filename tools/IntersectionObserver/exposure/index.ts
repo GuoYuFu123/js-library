@@ -3,7 +3,7 @@ import { ObserveExposure } from './exposure';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function install(Vue: any) {
-  Vue.directive('zyb-exposure', ObserveExposure);
+  Vue.directive('guoguo-exposure', ObserveExposure);
 }
 
 const plugin = {

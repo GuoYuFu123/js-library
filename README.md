@@ -19,11 +19,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 
 --  designPattern 【设计模式】
 
---  flutter 【flutter系列】
-
 --  interviewQuestion 【面试题整理】
-
---  jest 【单元测试】
 
 --  leetcode 【leetcode刷题记录】
 
@@ -52,6 +48,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- throttle-debouce [节流与防抖]
 	-- typedoc [typescript文档化工具]
 	-- waterMark [文本水印]
+-- technology 【技术】
 
 未完待续...
 ```

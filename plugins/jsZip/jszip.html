@@ -55,15 +55,15 @@ function jszipFileshander(files) {
         let fileNameArr = key.split('/');     
         if(value.dir) { //文件夹
             fileNameArr.pop()
-            dirHandler(fileNameArr)
+            dirHandle(fileNameArr)
         } else { //文件
-            fileHaner(fileNameArr)
+            fileHandle(fileNameArr)
         }
     }
 }
 
 //文件夹处理
-function dirHandler(fileNameArr) {     
+function dirHandle(fileNameArr) {     
     let dirName = fileNameArr[fileNameArr.length-1];
     let treeArr = filesTree;
     let cusName = fileNameArr.join("@$#")
@@ -79,7 +79,7 @@ function dirHandler(fileNameArr) {
 }
 
 //文件处理
-function fileHaner(fileNameArr) {
+function fileHandle(fileNameArr) {
     let treeArr = filesTree;
     let fileName = fileNameArr[fileNameArr.length-1];
     //过滤类型【如果不需要可以注释掉if判断】
