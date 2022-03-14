@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>偏函数</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     *什么是偏函数？偏函数就是将一个 n 参的函数转换成固定 x 参的函数，剩余参数（n - x）将在下次调用全部传入。举个例子：
+     * */
+
+    //  就是函数下次调用，一次性全部传入执行
+    function add(a, b, c) {
+      return a + b + c;
+    }
+
+    function partial(fn, ...args) {
+      return (...arg) => {
+        return fn(...args, ...arg);
+      };
+    }
+    let partialAdd = partial(add, 1);
+    partialAdd(2, 3);
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数柯里化</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * 
+            function a(x,y){}
+            a.length // 2
+            
+            function b(x,y=2,z){}
+            b.length // 1
+            
+            function c(x,...args){}
+            c.length //1
+
+        1、length 是JS函数对象的一个属性值，该值是指 “该函数有多少个必须要传入的参数”，即形参的个数
+        2、形参的数量不包括剩余参数个数，仅包括 “第一个具有默认值之前的参数个数”
+     * */
+
+    //什么叫函数柯里化？其实就是将使用多个参数的函数转换成一系列使用一个参数的函数的技术
+    function add(a, b, c) {
+      return a + b + c;
+    }
+    function curry(fn) {
+      let judge = (...args) => {
+        console.log(args);
+        if (args.length == fn.length) return fn(...args);
+        return (...arg) => judge(...args, ...arg);
+      };
+      return judge;
+    }
+
+    add(1, 2, 3);
+    let addCurry = curry(add);
+    addCurry(1)(2)(3);
+  </script>
+</html>
