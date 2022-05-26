@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS `school`; 
+USE `school`; 
+CREATE TABLE `grade` (`GradeID` INT (11) NOT NULL AUTO_INCREMENT COMMENT '年级编号',`GradeName` VARCHAR (50) NOT NULL COMMENT '年纪名称',PRIMARY KEY (`GradeID`)) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8; 
+INSERT INTO grade (GradeID,GradeName) VALUES (1,'大一'); 
+INSERT INTO grade (GradeID,GradeName) VALUES (2,'大二'); 
+INSERT INTO grade (GradeID,GradeName) VALUES (3,'大三'); 
+INSERT INTO grade (GradeID,GradeName) VALUES (4,'大四'); 
+INSERT INTO grade (GradeID,GradeName) VALUES (5,'预科班'); 
+CREATE TABLE `result` (`id` INT (4) NOT NULL AUTO_INCREMENT,`StudentNo` INT (4) NOT NULL COMMENT '学号',`SubjectNo` INT (4) NOT NULL COMMENT '课程编号',`ExamDate` DATETIME NOT NULL COMMENT '考试时间',`StudentResult` INT (4) NOT NULL COMMENT '考试成绩',PRIMARY KEY (`id`),KEY `SubjectNo` (`subjectNo`)) ENGINE=INNODB DEFAULT CHARSET=utf8; 
+INSERT INTO `result` (`studentno`,`subjectno`,`examdate`,`studentresult`) VALUES (1000,1,'2013-11-11 16:00:00',85),(1000,2,'2013-11-12 16:00:00',70),(1000,3,'2013-11-11 09:00:00',68),(1000,4,'2013-11-13 16:00:00',98),(1000,5,'2013-11-14 16:00:00',68),(1001,6,'2013-11-14 16:00:00',78),(1002,7,'2013-11-14 16:00:00',88); 
+DROP TABLE IF EXISTS student; 
+CREATE TABLE student (`StudentNo` INT (4) NOT NULL COMMENT '学号',`Loginpwd` VARCHAR (20) DEFAULT NULL COMMENT '密码',`StudentName` VARCHAR (20) DEFAULT NULL COMMENT '学生姓名',`Sex` TINYINT DEFAULT NULL COMMENT '性别，0/1',`Gradeid` INT (11) DEFAULT NULL COMMENT '年级编号',`Phone` VARCHAR (50) NOT NULL COMMENT '联系电话，不允许为空',`Address` VARCHAR (255) NOT NULL COMMENT '地址，不允许为空',`BornDate` DATETIME DEFAULT NULL COMMENT '出生时间',`Email` VARCHAR (50) NOT NULL COMMENT '邮箱账号,不允许为空',`IdentityCard` VARCHAR (18) DEFAULT NULL COMMENT '身份证号',PRIMARY KEY (`StudentNO`),-- 主键
+UNIQUE KEY `IdentityCard` (`IdentityCard`),-- 唯一索引
+KEY `Email` (`Email`)-- index索引
+) ENGINE=INNODB DEFAULT CHARSET=utf8; 
+INSERT INTO `student` (`studentno`,`loginpwd`,`studentname`,`sex`,`gradeid`,`phone`,`address`,`borndate`,`email`,`identitycard`) VALUES (1000,'123456','张伟',0,2,'13800001234','北京朝阳','1980-1-1','text123@qq.com','123456434334011234'),(1001,'123456','郭德',0,2,'13832343234','北京朝阳','1980-1-1','text123@qq.com','123456194001011234'),(1002,'123456','李振',0,2,'13854325234','北京朝阳','1980-1-1','text123@qq.com','123456123001011234'),(1003,'123456','刘强',0,2,'12130021234','北京朝阳','1980-1-1','text123@qq.com','123456193141011234'),(1004,'123456','马云',0,2,'13832131234','北京朝阳','1980-1-1','text123@qq.com','123454332001011234'),(1005,'123456','赵青',0,2,'13545441234','北京朝阳','1980-1-1','text123@qq.com','123456142101011234'),(1006,'123456','赵强',1,3,'13805445222','广东深圳','1990-1-1','text111@qq.com','123132131301011233'); 
+CREATE TABLE `subject` (`SubjectNo` INT (11) NOT NULL AUTO_INCREMENT COMMENT '课程编号',`SubjectName` VARCHAR (50) DEFAULT NULL COMMENT '课程名称',`ClassHour` INT (4) DEFAULT NULL COMMENT '学时',`GradeID` INT (4) DEFAULT NULL COMMENT '年纪编号',PRIMARY KEY (`SubjectNo`)) ENGINE=INNODB DEFAULT CHARSET=utf8; 
+INSERT INTO `subject` (`subjectno`,`subjectname`,`classhour`,`gradeid`) VALUES (1,'高等数学-1',110,1),(2,'高等数学-2',110,2),(3,'高等数学-3',100,3),(4,'高等数学-4',130,4),(5,'C语言-1',110,1),(6,'C语言-2',110,2),(7,'C语言-3',100,3),(8,'C语言-4',130,4),(9,'Java程序设计-1',110,1),(10,'Java程序设计-2',110,2),(11,'Java程序设计-3',100,3),(12,'Java程序设计-4',130,4),(13,'数据库结构-1',110,1),(14,'数据库结构-2',110,2),(15,'数据库结构-3',100,3),(16,'数据库结构-4',130,4),(17,'C#基础',130,1);
