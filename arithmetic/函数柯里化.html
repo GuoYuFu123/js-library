@@ -39,5 +39,25 @@
     add(1, 2, 3);
     let addCurry = curry(add);
     addCurry(1)(2)(3);
+
+    // 方式二：
+
+    const curry2 = function (fn) {
+      // bind(绑定)  fn
+      let length = fn.length;
+      let params = []; // bind params
+
+      return function partial(x) {
+        params.push(x); // use 使用 params
+        if (params.length === length) {
+          return fn(...params);
+        } else {
+          return partial;
+        }
+      };
+    };
+
+    const curry2Add = curry2((a, b, c) => a + b + c);
+    console.log(curry2Add(1)(2)(3), 'curry2Add(1)(2)(3);')
   </script>
 </html>

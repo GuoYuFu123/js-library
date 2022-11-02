@@ -1,0 +1,12 @@
+{
+  "name": "redis-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "dependencies": {
+    "redis": "^4.3.1"
+  }
+}
