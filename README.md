@@ -50,6 +50,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- waterMark [文本水印]
 -- technology 【技术】
 	-- docker [docker入门]
+	-- elastic-search [elk入门]
 	-- flutter 
 	-- jest
 	-- linux
