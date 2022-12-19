@@ -55,6 +55,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- jest
 	-- linux
 	-- mysql
+	-- rabbit-mq [mq入门]
 	-- redis
 
 未完待续...
