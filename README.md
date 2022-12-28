@@ -27,6 +27,7 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- download [文件下载]
 	-- jwt [JSON Web Token]
 	-- middleware [中间件]
+	-- nvm的基本使用.md
 
 --  plugins 【插件系列】
 	-- canvas-circle-water  [canvas实现水滴进度图形]
