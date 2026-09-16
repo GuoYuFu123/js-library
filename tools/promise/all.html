@@ -25,9 +25,9 @@
       return new Promise((resolve, reject) => {
         let result = [];
         let count = 0;
-        pArr.forEach(
-          (promise, index) => {
-            promise.then((res) => {
+        pArr.forEach((promise, index) => {
+          promise.then(
+            (res) => {
               // 注意点1: index用来保证按序存储
               result[index] = data;
 
@@ -40,12 +40,12 @@
               // 注意点3: 用count 和 传入的pArr的长度比较，
               // 注意点4: 不能用result的长度比较，因为有可能最后一个promise最先返回，会出现[undefined,undefined,last-res]
               count === pArr.length && resolve(result);
-            });
-          },
-          (err) => {
-            reject(err);
-          }
-        );
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+        });
       });
     }
   </script>

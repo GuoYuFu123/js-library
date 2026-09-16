@@ -160,7 +160,19 @@ JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api
 
 ## 六、实践
 
-![image-20210623100815703](/Users/fuguoyu/Library/Application Support/typora-user-images/image-20210623100815703.png)
-
 源码请参考 [github代码](https://github.com/GuoYuFu123/guoguo-ts-axios)
+
+
+
+## 七、passport-jwt 或 passport-local 有啥区别？
+
+```bash
+passport-jwt和passport-local的主要区别体现在它们所采用的身份验证方式上。
+
+passport-jwt是基于JSON Web令牌（JWT）的身份验证策略。JWT是一种开放标准（RFC 7519），它定义了一种紧凑的、自包含的方式，用于作为JSON对象在各方之间安全地传输信息。这些信息可以被验证和信任，因为它们是数字签名的。在passport-jwt中，JWT被用作验证用户身份的一种方式，通常用于保护那些没有会话的RESTful端点。注意，passport-jwt本身并不用于登录，而是用于验证当前登录用户的身份。用户需要先通过其他策略登录并获取JWT，然后才能使用passport-jwt进行身份验证。
+
+而passport-local则是基于用户名和密码的身份验证策略。这种策略允许用户在Node.js应用程序中使用他们的用户名和密码进行身份验证。通过集成passport中间件，这种本地身份验证策略可以轻松地集成到任何支持Connect风格中间件（包括Express）的应用程序或框架中。
+
+总的来说，passport-jwt和passport-local的主要区别在于它们所使用的身份验证机制不同：前者依赖于JWT，后者则依赖于用户名和密码。选择哪种策略取决于你的具体需求和应用场景。
+```
 

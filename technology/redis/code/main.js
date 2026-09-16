@@ -4,7 +4,7 @@ const redis = require("redis");
 
 const init = async () => {
   const client = redis.createClient({
-    url: "redis://:password@ip:port",
+    url: "redis://:123456@47.93.160.174:9379",
   });
 
   await client.connect();

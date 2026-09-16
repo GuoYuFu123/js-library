@@ -43,9 +43,9 @@ function matchK(str) {
         } else {
             if(stack.length) {
                 var top = stack[stack.length - 1];
-                switch(stack[i]) {
+                switch(str[i]) {
                     case ")": 
-                        if (i == top) {
+                        if (str[i] == top) {
                             stack.pop();
                             break;
                         } else {

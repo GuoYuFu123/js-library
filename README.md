@@ -53,8 +53,12 @@ js-library记录个人成长的点滴,欢迎大家进行技术交流
 	-- docker [docker入门]
 	-- elastic-search [elk入门]
 	-- flutter 
+	-- go 【go入门】
 	-- jest
+	-- k8s
 	-- linux
+	-- lrzsz
+	-- mongo
 	-- mysql
 	-- rabbit-mq [mq入门]
 	-- redis

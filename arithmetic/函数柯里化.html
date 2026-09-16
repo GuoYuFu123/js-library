@@ -28,8 +28,8 @@
       return a + b + c;
     }
     function curry(fn) {
+      console.log(fn.length,'fn.length')
       let judge = (...args) => {
-        console.log(args);
         if (args.length == fn.length) return fn(...args);
         return (...arg) => judge(...args, ...arg);
       };
@@ -41,7 +41,6 @@
     addCurry(1)(2)(3);
 
     // 方式二：
-
     const curry2 = function (fn) {
       // bind(绑定)  fn
       let length = fn.length;
